@@ -1,4 +1,0 @@
-1.人员管理系统
-2.配置资源文件resources/swingset_zh_CN.properties.例如：数据存储在datafile.txt文件中
-3.主运行文件：TableDemo.java
-4.打包后的jar文件，双击可以运行：dist/cm.jar
