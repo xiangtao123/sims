@@ -1,4 +1,4 @@
-cm
+sims - 学生信息管理系统
 ==
-
-java swing 学生信息查询系统
+Maven Java Web 项目：
+== 
