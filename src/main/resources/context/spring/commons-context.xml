@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:mvc="http://www.springframework.org/schema/mvc"
+		xmlns:util="http://www.springframework.org/schema/util" 
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+	">
+	
+	<bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+	    <property name="locations">  
+	        <list>  
+	            <value>classpath:config/*.properties</value>
+	        </list>  
+	    </property>  
+	</bean>  
+	
+	<import resource="datasource-context.xml" />
+	<import resource="jdbc-context.xml" />
+	<import resource="mybatis-context.xml" />
+	<import resource="hibernate-jpa-context.xml" /> 
+	<import resource="shiro-context.xml" />
+	<import resource="component-context.xml" />
+
+	<!-- 
+	<import resource="hibernate-context.xml" />
+	-->
+	
+</beans>

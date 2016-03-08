@@ -1,0 +1,8 @@
+   [ 
+	{ id:4, pId:0, name:"系统管理", title:"系统管理", open:true, type:'module', key:'module:system_manager'},
+	{ id:41, pId:4, name:"操作日志", title:"查看操作日志报表",targetUrl:'/dispatcher/system/biz_operate_log', type:'page', key:'page:operate_log'},
+	{ id:44, pId:4, name:"角色管理", title:"角色管理",targetUrl:'/dispatcher/system/biz_role_action', type:'page', key:'page:role_action'},
+	{ id:45, pId:4, name:"用户管理", title:"用户管理",targetUrl:'/dispatcher/system/biz_user', type:'page', key:'page:user'},
+    { id:46, pId:4, name:"企业管理", title:"企业管理",targetUrl:'/dispatcher/system/biz_ec', type:'page', key:'page:ec'}
+     
+   ]

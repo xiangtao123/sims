@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<!-- 定义别名 -->
+	<!-- 
+	<typeAliases>
+		<typeAlias type="com.yml.work.utils.page.PageInfo" alias="PageInfo"/>
+		<typeAlias type="com.yml.work.model.User" alias="User" />
+	</typeAliases>
+	 -->
+
+	<!-- 
+		<plugins> 
+         <plugin interceptor="com.jsrush.security.admin.intercepter.PagePluginInterceptorr"> 
+             <property name="dialect" value="mysql" /> 
+             <property name="pageSqlId" value=".*Page.*" /> 
+         </plugin> 
+     </plugins> 
+	
+	 -->     
+	
+	<!-- 已在SpringMVC中配置管理
+ 	<plugins> 
+         <plugin interceptor="com.yml.work.common.PagePlugin"> 
+             <property name="dialect" value="mysql" /> 
+             <property name="pageSqlId" value=".*Page.*" /> 
+         </plugin> 
+     </plugins> 
+		<environments default="development">
+			<environment id="development">
+				<transactionManager type="JDBC" />
+				<dataSource type="POOLED">
+					<property name="driver" value="com.mysql.jdbc.Driver" />
+					<property name="url"  value="jdbc:mysql://127.0.0.1:3306/mybatis?useUnicode=true&amp;characterEncoding=utf8" />
+					<property name="username" value="root" />
+					<property name="password" value="123456" />
+				</dataSource>
+			</environment>
+		</environments>
+ 	-->
+ 	<!-- 映射文件 已在SpringMVC中配置管理 交给了 sqlsessionfactory管理
+		<mappers>
+			<mapper  resource="cn/itcast/springmvc/domain/User.xml" />
+		</mappers>
+	-->
+
+
+</configuration>

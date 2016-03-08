@@ -1,0 +1,46 @@
+*{
+	font-size:12px;
+}
+body {
+    font-family:verdana,helvetica,arial,sans-serif;
+    padding:20px;
+    font-size:12px;
+    margin:0;
+}
+h2 {
+    font-size:18px;
+    font-weight:bold;
+    margin:0;
+    margin-bottom:15px;
+}
+.demo-info{
+	padding:0 0 12px 0;
+}
+.demo-tip{
+	display:none;
+}
+
+div.error, div.alert, div.notice, div.success, div.info {padding:4px;margin-bottom:1em;border:2px solid #ddd;}
+div.error, div.alert {background:#fbe3e4;color:#8a1f11;border-color:#fbc2c4;}
+div.notice {background:#fff6bf;color:#514721;border-color:#ffd324;}
+div.success {background:#e6efc2;color:#264409;border-color:#c6d880;}
+div.info {background:#d5edf8;color:#205791;border-color:#92cae4;}
+div.error a, .alert a {color:#8a1f11;}
+div.notice a {color:#514721;}
+div.success a {color:#264409;}
+div.info a {color:#205791;}
+	
+.easyui-condition-form { margin-top: 4px; }
+
+
+.large-input { width: 320px; }
+
+.easyui-textbox { width: 130px; 	}
+.easyui-combobox{width: 130px; 	}
+.easyui-datebox {width: 130px; 	}
+
+
+.highlight-row-success { background-color: #7cbe56; font-weight: bold; }
+
+.highlight-row-warn { background-color: #FF6666 ; font-weight: bold; }
+
