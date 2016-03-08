@@ -1,0 +1,41 @@
+/*查询面板*/
+.query_panel {
+
+}
+
+.query_panel > div {
+    padding: 5px;
+}
+
+.query_panel > div > span {
+    display: inline-block;
+    padding: 5px;
+}
+
+.ui.form {
+    padding: 10px;
+}
+
+.ui.form .field {
+    padding-bottom: 10px;
+}
+
+.ui.form .field label {
+    display: block;
+    margin-bottom: 3px;
+}
+
+.query_panel .easyui-condition-form div {
+    padding: 5px;
+}
+
+.query_panel .easyui-condition-form span {
+    padding-right: 5px;
+}
+
+.datagrid-header-rownumber{
+    width:40px;
+}
+.datagrid-cell-rownumber{
+    width:40px;
+}

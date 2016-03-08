@@ -1,0 +1,20 @@
+记录jQuery EasyUI 改动历史
+
+
+1.为combobox增加绑定input事件，解决中文过滤问题：
+
+	文件路径：/src/main/webapp/static/jquery-easyui-1.4/jquery.easyui.min.js
+	注释说明：autocompelete 中文检索问题 ： 为输入项绑定 事件接口 input:_20141011a
+	修改内容：为combobox 增加绑定input事件接口。 inputEvents:{click:_8a2,keydown:_8a6,paste:_8a6,drop:_8a6} ==> inputEvents:{click:_8a2,keydown:_8a6,paste:_8a6,drop:_8a6,input:function(e){}}
+	作者：colorwolf
+	日期：2014-10-11
+	
+	
+2.为dialog弹出位置修改center 属性时，高度距顶部 100：
+
+	文件路径：/src/main/webapp/static/jquery-easyui-1.4/jquery.easyui.min.js
+	注释说明：dialog布局位置修改
+	修改内容：注掉原因top计算逻辑，设置为top=100.
+	作者：colorwolf
+	日期：2014-10-28
+	

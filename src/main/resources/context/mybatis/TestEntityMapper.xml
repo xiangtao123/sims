@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jsrush.security.admin.dao.TestEntityDao">
+
+	<resultMap type="com.jsrush.security.admin.entity.TestEntity" id="testEntityResultMap">
+		<id property="id" column="id"/>
+		<result property="text" column="text"/>
+	</resultMap>
+	
+	<!-- 保存 -->
+	<insert id="save" parameterType="java.lang.String" >
+		<![CDATA[
+			insert into test(text) values(#{text})
+		]]>
+	</insert>
+	<!-- 查询，根据id -->
+	<select id="get" parameterType="java.lang.Long" resultType="com.jsrush.security.admin.entity.TestEntity" resultMap="testEntityResultMap">
+		<![CDATA[
+			SELECT * from test t WHERE t.id = #{id}		 
+		]]> 
+	</select>
+	
+	<!-- 查询，根据text -->
+	<select id="findByTextLike" parameterType="java.lang.String" resultType="com.jsrush.security.admin.entity.TestEntity" resultMap="testEntityResultMap">
+		<![CDATA[
+			SELECT * from test t 
+		]]> 
+		
+		<if test="_parameter != null">
+			<![CDATA[
+				WHERE t.text like CONCAT('%', #{text} ,'%')
+			]]>
+		</if>
+		
+	</select>
+	
+	
+	<!-- 查询列表 -->
+	<select id="findList"  resultType="com.jsrush.security.admin.entity.TestEntity" resultMap="testEntityResultMap">
+		<![CDATA[
+			SELECT * from test
+		]]> 
+	</select>
+	
+	<!-- 分页查询 -->
+	<select id="findPageList" parameterType="com.jsrush.security.admin.entity.TestEntity" resultType="com.jsrush.security.admin.entity.TestEntity" resultMap="testEntityResultMap" >
+		<![CDATA[
+			SELECT * from test t 
+		]]> 
+		<if test="testEntity.text != null">
+			<![CDATA[
+				WHERE t.text like CONCAT('%', #{testEntity.text} ,'%')
+			]]>
+		</if>
+		order by t.id desc
+	</select>
+	
+	
+</mapper>
