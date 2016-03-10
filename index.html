@@ -1,71 +1,167 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <meta charset="UTF-8">
+    <title>SIMS by xiangtao123</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <title>SIMS by xiangtao123</title>
   </head>
-
   <body>
-    <header>
-      <div class="inner">
-        <h1>SIMS</h1>
-        <h2>学生信息管理系统 Maven Java Web</h2>
-        <a href="https://github.com/xiangtao123/sims" class="button"><small>View project on</small> GitHub</a>
-      </div>
-    </header>
+    <section class="page-header">
+      <h1 class="project-name">SIMS</h1>
+      <h2 class="project-tagline">学生信息管理系统 Maven Java Web</h2>
+      <a href="https://github.com/xiangtao123/sims" class="btn">View on GitHub</a>
+      <a href="https://github.com/xiangtao123/sims/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/xiangtao123/sims/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h3>
-<a id="欢迎访问学生信息管理系统项目界面" class="anchor" href="#%E6%AC%A2%E8%BF%8E%E8%AE%BF%E9%97%AE%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E9%A1%B9%E7%9B%AE%E7%95%8C%E9%9D%A2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>欢迎访问学生信息管理系统项目界面.</h3>
+    <section class="main-content">
+      <h1>
+<a id="simsstudent-infomation-management-system学生信息管理系统" class="anchor" href="#simsstudent-infomation-management-system%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SIMS（Student Infomation Management System）：学生信息管理系统</h1>
 
-<p>该系统是一个基于Spring framework框架为后台框架，Jquery easyUI框架为前提框架编写；系统具有风格一致的界面，具有一般后台管理系统所具有的功能权限控制机制。</p>
+<h2>
+<a id="项目介绍" class="anchor" href="#%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>项目介绍</h2>
 
-<h3>
-<a id="项目简介" class="anchor" href="#%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>项目简介</h3>
+<pre><code>该系统是基于HTTP协议的Web应用，主要的业务是学生信息的管理；具有基于角色访问控制（RBAC）的功能授权鉴权能力。
+</code></pre>
 
-<ol>
-<li>该系统属于B/S模式的Java Web项目；</li>
-<li>服务端使用Java(1.7)语言编写；</li>
-<li>使用<a href="http://maven.apache.org/">Maven</a>管理项目依赖；</li>
-<li>数据存储使用关系型数据库MySQL数据库管理系统；</li>
-<li>界面基于<a href="http://jeasyui.com/">jQuery EasyUI</a>UI框架编写；</li>
-</ol>
+<h2>
+<a id="技术概要" class="anchor" href="#%E6%8A%80%E6%9C%AF%E6%A6%82%E8%A6%81" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>技术概要</h2>
+
+<ul>
+<li>服务端代码使用Java语言编写；</li>
+<li>前端界面使用<a href="http://jeasyui.com/">jQuery EasyUI</a>；</li>
+<li>项目依赖使用<a href="http://maven.apache.org/">Maven</a>管理；</li>
+<li>后端框架包括：Spring MVC、Hibernate、MyBatis、Hibernate JPA、Apache shiro等；</li>
+<li>数据库管理系统选用MySQL；</li>
+</ul>
+
+<h2>
+<a id="系统结构" class="anchor" href="#%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>系统结构</h2>
+
+<p><img src="https://github.com/xiangtao123/sims/raw/master/docs/design/ac.png" alt="系统架构图"></p>
+
+<h2>
+<a id="实体关系er图" class="anchor" href="#%E5%AE%9E%E4%BD%93%E5%85%B3%E7%B3%BBer%E5%9B%BE" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>实体关系ER图</h2>
+
+<p><img src="https://github.com/xiangtao123/sims/raw/master/docs/design/er.png" alt="实体关系ER图"></p>
+
+<h2>
+<a id="系统基础功能" class="anchor" href="#%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E5%8A%9F%E8%83%BD" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>系统基础功能</h2>
+
+<ul>
+<li>- [x] 权限管理模块：基于Apache shiro权限框架实现的用户组件，功能包括：系统资源管理、角色管理、用户管理、用户认证（登录）等；</li>
+<li>- [x] 业务日志模块：提供使用注解anotation方式进行业务信息的采集，提供操作日志查询功能；</li>
+</ul>
+
+<h2>
+<a id="业务功能" class="anchor" href="#%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>业务功能</h2>
+
+<ul>
+<li>- [ ] 院系管理：维护学校的院系结构；</li>
+<li>- [ ] 专业管理：维护院系内专业结构；</li>
+<li>- [ ] 课程管理：维护专业内开设的课程；</li>
+<li>- [ ] 学生管理：维护学生信息；</li>
+<li>- [ ] 选修管理：提供学生选课、成绩录入、成绩查询功能；</li>
+</ul>
+
+<h2>
+<a id="数据初始化" class="anchor" href="#%E6%95%B0%E6%8D%AE%E5%88%9D%E5%A7%8B%E5%8C%96" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>数据初始化</h2>
+
+<ul>
+<li>
+<p>系统数据初始化化：运行单元测试类com.jsrush.security.rbac.InitRootUserTest，需要将设置事务提交模式</p>
+
+<div class="highlight highlight-source-java"><pre>
+@TransactionConfiguration(defaultRollback<span class="pl-k">=</span><span class="pl-c1">false</span>)
+</pre></div>
+
+<p>，按测试方法的序号依  次执行；</p>
+</li>
+</ul>
+
+<h2>
+<a id="项目目录介绍" class="anchor" href="#%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E4%BB%8B%E7%BB%8D" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>项目目录介绍</h2>
+
+<ul>
+<li>项目文档脚本类文件目录：docs/</li>
+<li>项目配置信息文件目录：src/main/resources/config/</li>
+<li>项目上下文配置文件：src/main/resources/context/spring/</li>
+<li>Mybatis Mapper文件目录：src/main/resources/context/mybatis/</li>
+<li>项目源码目录：src/main/java/</li>
+<li>项目测试源码目录：src/test/java/</li>
+<li>web目录：src/main/webapp/</li>
+<li>静态资源目录：src/main/webapp/static</li>
+<li>视图文件目录：src/main/webapp/WEB-INF/views</li>
+<li>Spring MVC配置文件目录：src/main/webapp/WEB-INF/spring/</li>
+</ul>
+
+<h2>
+<a id="启动方式" class="anchor" href="#%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>启动方式</h2>
+
+<ul>
+<li>首先创建数据库，修改数据源配置文件src/main/resources/config/jdbc.properties
+
+<ul>
+<li>数据连接信息</li>
+<li>开启hibernate的hmb2ddl功能生成表或者执行建表脚本</li>
+</ul>
+</li>
+<li>
+<p>maven-jetty插件启动服务：执行命令</p>
+
+<pre><code>
+mvn jetty:run
+</code></pre>
+</li>
+<li>
+<p>jetty容器的配置信息在pom.xml中设置，内容如下：</p>
+
+<div class="highlight highlight-text-xml"><pre>
+    <span class="pl-c">&lt;!-- jetty:config --&gt;</span>
+    &lt;<span class="pl-ent">project</span>.jetty.port&gt;8080&lt;/<span class="pl-ent">project</span>.jetty.port&gt;
+    &lt;<span class="pl-ent">project</span>.jetty.scanIntervalSeconds&gt;10&lt;/<span class="pl-ent">project</span>.jetty.scanIntervalSeconds&gt;
+    &lt;<span class="pl-ent">project</span>.jetty.maxIdleTime&gt;2000&lt;/<span class="pl-ent">project</span>.jetty.maxIdleTime&gt;
+</pre></div>
+</li>
+<li>如果关闭热启动功能设置jetty参数project.jetty.scanIntervalSeconds为-1；</li>
+</ul>
+
+<h2>
+<a id="代码规范" class="anchor" href="#%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>代码规范</h2>
+
+<ul>
+<li>提交的单元测试类，事务设置为回滚状态；</li>
+<li>提交的代码要具有单元测试，保证自测通过；</li>
+<li>提交的代码不能具有编译错误；</li>
+<li>提交的代码不能影响项目的启动和其他功能的使用；</li>
+<li>界面需要兼容IE8+、Google chrome、MAC safari等现代浏览器；</li>
+</ul>
+
+<h2>
+<a id="开发建议" class="anchor" href="#%E5%BC%80%E5%8F%91%E5%BB%BA%E8%AE%AE" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>开发建议</h2>
+
+<ul>
+<li>基于面向接口开发方式，进行测试驱动开发； </li>
+<li>服务端代码使用单元测试进行功能验证；</li>
+<li>服务启动后进行界面的编写和功能的调试；</li>
+</ul>
 
 <h3>
 <a id="意见反馈" class="anchor" href="#%E6%84%8F%E8%A7%81%E5%8F%8D%E9%A6%88" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>意见反馈</h3>
 
 <p>如果在使用过程中有问题，可以将问题发送到我的邮箱。</p>
-        </section>
 
-        <aside id="sidebar">
-          <a href="https://github.com/xiangtao123/sims/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/xiangtao123/sims/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/xiangtao123/sims">SIMS</a> is maintained by <a href="https://github.com/xiangtao123">xiangtao123</a>.</span>
 
-          <p class="repo-owner"><a href="https://github.com/xiangtao123/sims"></a> is maintained by <a href="https://github.com/xiangtao123">xiangtao123</a>.</p>
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
 
-          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
-    </div>
+    </section>
 
   
   </body>
