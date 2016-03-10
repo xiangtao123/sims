@@ -50,6 +50,7 @@
 * maven-jetty插件：执行命令mvn jetty:run启动服务；
 * jetty容器的配置信息在pom.xml中设置，内容如下：
 	````xml
+		
 		<!-- jetty:config 
 		<project.jetty.port>8080</project.jetty.port>
 		<project.jetty.scanIntervalSeconds>10</project.jetty.scanIntervalSeconds>
