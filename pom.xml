@@ -2,16 +2,16 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <name>security.demo</name>
-  <groupId>com.jsrush</groupId>
-  <artifactId>security.demo</artifactId>
+  <name>sims</name>
+  <groupId>com.jsrush.sims</groupId>
+  <artifactId>web</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   
   <url>http://maven.apache.org</url>
 
   <properties>
-    <project.build.filename>demo</project.build.filename>
+    <project.build.filename>sims</project.build.filename>
 	<version.project.compiler.jdk>1.7</version.project.compiler.jdk>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     
