@@ -17,7 +17,7 @@
     
     <!-- jetty:config -->
     <project.jetty.port>8080</project.jetty.port>
-    <project.jetty.scanIntervalSeconds>-1</project.jetty.scanIntervalSeconds>
+    <project.jetty.scanIntervalSeconds>10</project.jetty.scanIntervalSeconds>
     <project.jetty.maxIdleTime>2000</project.jetty.maxIdleTime>
     
     <!-- driver config -->
@@ -44,12 +44,6 @@
   </properties>
   
   <dependencies>
-  	 <dependency>
-		<groupId>net.sf.ehcache</groupId>
-		<artifactId>ehcache-core</artifactId>
-		<version>2.2.0</version>
-	 </dependency>
-	 	
 	 <dependency>
 		<groupId>org.mybatis</groupId>
 		<artifactId>mybatis-spring</artifactId>
@@ -227,12 +221,6 @@
     	<artifactId>shiro-web</artifactId>
     	<version>${version.project.shiro}</version>
     </dependency>
-    <dependency>
-		<groupId>org.apache.shiro</groupId>
-		<artifactId>shiro-ehcache</artifactId>
-		<version>${version.project.shiro}</version>
-	</dependency>
-	
     <dependency>
     	<groupId>javax.servlet</groupId>
     	<artifactId>servlet-api</artifactId>
