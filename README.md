@@ -14,16 +14,16 @@
 
 
 ## 系统基础功能
-* 权限管理模块：基于Apache shiro权限框架实现的用户组件，功能包括：系统资源管理、角色管理、用户管理、用户认证（登录）等；
-* 业务日志模块：提供使用注解anotation方式进行业务信息的采集，提供操作日志查询功能；
+* - [x] 权限管理模块：基于Apache shiro权限框架实现的用户组件，功能包括：系统资源管理、角色管理、用户管理、用户认证（登录）等；
+* - [x] 业务日志模块：提供使用注解anotation方式进行业务信息的采集，提供操作日志查询功能；
 
 
-## 业务功能（待开发）
-* 院系管理：维护学校的院系结构；
-* 专业管理：维护院系内专业结构；
-* 课程管理：维护专业内开设的课程；
-* 学生管理：维护学生信息；
-* 选修管理：提供学生选课、成绩录入、成绩查询功能；
+## 业务功能
+* - [ ] 院系管理：维护学校的院系结构；
+* - [ ] 专业管理：维护院系内专业结构；
+* - [ ] 课程管理：维护专业内开设的课程；
+* - [ ] 学生管理：维护学生信息；
+* - [ ] 选修管理：提供学生选课、成绩录入、成绩查询功能；
 
 
 ## 数据初始化
@@ -49,11 +49,13 @@
 	* 开启hibernate的hmb2ddl功能生成表或者执行建表脚本
 * maven-jetty插件：执行命令mvn jetty:run启动服务；
 * jetty容器的配置信息在pom.xml中设置，内容如下：
-
-	<!-- jetty:config -->
-	<project.jetty.port>8080</project.jetty.port>
-	<project.jetty.scanIntervalSeconds>10</project.jetty.scanIntervalSeconds>
-	<project.jetty.maxIdleTime>2000</project.jetty.maxIdleTime>
+	<code>
+		<!-- jetty:config -->
+		<project.jetty.port>8080</project.jetty.port>
+		<project.jetty.scanIntervalSeconds>10</project.jetty.scanIntervalSeconds>
+		<project.jetty.maxIdleTime>2000</project.jetty.maxIdleTime>
+	</code>
+	
 * 如果关闭热启动功能设置jetty参数project.jetty.scanIntervalSeconds为-1；
 
 
