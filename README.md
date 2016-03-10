@@ -14,11 +14,11 @@
 
 
 ## 系统结构
-![系统架构图](https://github.com/xiangtao123/sims/tree/master/docs/design/ac.png)
+![系统架构图](https://github.com/xiangtao123/sims/raw/master/docs/design/ac.png)
 
 
 ## 实体关系ER图
-![实体关系ER图](https://github.com/xiangtao123/sims/tree/master/docs/design/er.png)
+![实体关系ER图](https://github.com/xiangtao123/sims/raw/master/docs/design/er.png)
 
 
 
