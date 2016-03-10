@@ -7,10 +7,19 @@
 	
 ## 技术概要
 * 服务端代码使用Java语言编写；
-* 前端界面使用jQuery EasyUI；
-* 项目依赖使用Maven管理；
+* 前端界面使用[jQuery EasyUI](http://jeasyui.com/)；
+* 项目依赖使用[Maven](http://maven.apache.org/)管理；
 * 后端框架包括：Spring MVC、Hibernate、MyBatis、Hibernate JPA、Apache shiro等；
 * 数据库管理系统选用MySQL；
+
+
+## 系统结构
+![系统架构图](https://github.com/xiangtao123/sims/tree/master//docs/design/系统架构图.png)
+
+
+## 实体关系ER图
+![实体关系ER图](https://github.com/xiangtao123/sims/tree/master//docs/design/实体关系ER图.png)
+
 
 
 ## 系统基础功能
@@ -27,7 +36,13 @@
 
 
 ## 数据初始化
-* 系统数据初始化化：运行单元测试类com.jsrush.security.rbac.InitRootUserTest，需要将设置事务提交模式@TransactionConfiguration(defaultRollback=false)，按测试方法的序号依  次执行；
+* 系统数据初始化化：运行单元测试类com.jsrush.security.rbac.InitRootUserTest，需要将设置事务提交模式
+	````Java
+	
+	@TransactionConfiguration(defaultRollback=false)
+	
+	````
+，按测试方法的序号依  次执行；
 
 
 ## 项目目录介绍
@@ -47,15 +62,19 @@
 * 首先创建数据库，修改数据源配置文件src/main/resources/config/jdbc.properties
 	* 数据连接信息
 	* 开启hibernate的hmb2ddl功能生成表或者执行建表脚本
-* maven-jetty插件：执行命令mvn jetty:run启动服务；
+* maven-jetty插件启动服务：执行命令
+	````
+	
+	mvn jetty:run
+	````
 * jetty容器的配置信息在pom.xml中设置，内容如下：
 	````xml
 		
-		<!-- jetty:config 
+		<!-- jetty:config -->
 		<project.jetty.port>8080</project.jetty.port>
 		<project.jetty.scanIntervalSeconds>10</project.jetty.scanIntervalSeconds>
 		<project.jetty.maxIdleTime>2000</project.jetty.maxIdleTime>
-		-->
+		
 	````	
 * 如果关闭热启动功能设置jetty参数project.jetty.scanIntervalSeconds为-1；
 
