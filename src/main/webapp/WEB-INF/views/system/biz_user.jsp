@@ -116,17 +116,20 @@
            collapsible:true,
            url:'${ctx }/user/list',
            method:'post',
+           fitColumns:true,
            toolbar:toolbar
        ">
     <thead>
     <tr>
         <th data-options="field:'id',width:80,checkbox:true">编号</th>
         <th data-options="field:'loginName',width:80">登录名</th>
-        <th data-options="field:'name',width:80">姓名</th>
-        <th data-options="field:'role',width:100">角色</th>
-        <th data-options="field:'email',width:100">邮箱</th>
-        <th data-options="field:'registerDate',width:200">注册时间</th>
+        <th data-options="field:'name',width:160">姓名</th>
+        <th data-options="field:'role',width:200">角色</th>
+        <th data-options="field:'email',width:120">邮箱</th>
+        <th data-options="field:'registerDate',width:120">注册时间</th>
+        <!-- 
         <th data-options="field:'companyName',width:150">公司</th>
+         -->
 
     </tr>
     </thead>
@@ -136,7 +139,7 @@
     <div id="dlg_user_edit" style="width:480px;height:400px;" class="easyui-dialog"
          data-options="title:'添加用户',closed:true,modal:true,collapsible:false,buttons:buttons">
         <div class="ui form">
-            <form id="user_detail" class="easyui-form" action="${ctx }/user/edit" method="post"
+            <form id="user_detail" class="easyui-form" action="${ctx }/user/saveOrUpdate" method="post"
                   data-options="novalidate:true">
                 <input name="id" id="user_id" type="hidden">
 
@@ -239,7 +242,7 @@
             $('#password_warning').show();
             $('#dlg_user_edit').dialog({title: '编辑用户'});
             $('#user_detail').form('disableValidation');
-            $('#user_detail').form('load', '${ctx}/user?id=' + id);
+            $('#user_detail').form('load', '${ctx}/user/findById?id=' + id);
             user_edit_success = success;
             $('#dlg_user_edit').dialog('center').dialog('open');
         }
@@ -247,8 +250,9 @@
             $('#dlg_user_edit').dialog('close');
         }
         function dlg_action_edit_reset() {
-            if ($('#user_id').val()) {
-                $('#user_detail').form('load', '${ctx}/user?id=' + $('#user_id').val());
+        	var user_id = $('#user_id').val();
+            if (user_id) {
+                $('#user_detail').form('load', '${ctx}/user/findById?id=' + user_id);
             } else {
                 $('#user_detail').form('clear');
             }
@@ -263,9 +267,9 @@
             };
 
 
-            $.post("${ctx}/user/edit", data)
+            $.post("${ctx}/user/saveOrUpdate", data)
                     .done(function (data) {
-                        console.log(data);
+                        // console.log(data);
                         if (data != 1)
                             $.messager.alert('失败', "添加失败", 'error');
                         else {

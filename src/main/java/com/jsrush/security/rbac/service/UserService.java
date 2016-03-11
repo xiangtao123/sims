@@ -98,7 +98,8 @@ public class UserService {
 		user.setRegisterDate(new Date());
 		user.setEmail(email);
 		// 保存user permissions
-		for (Role rl : role.getRoles()) {
+		Set<Role> roles = role.getRoles();
+		for (Role rl : roles) {
 			user.getRoles().add(rl);
 		}
 		userDao.save(user);
@@ -159,13 +160,15 @@ public class UserService {
 		user.setLoginName(newUser.getLoginName());
 		user.setName(newUser.getName());
 		user.setEmail(newUser.getEmail());
-		if (newUser.getPassword() != null)
+		if (newUser.getPassword() != null) {
 			user.setPlainPassword(newUser.getPassword());
+			entryptPassword(user);
+		}
 		user.setRole(role);
 		user.getRoles().clear();
 		user.getRoles().addAll(role.getRoles());
 
-		entryptPassword(user);
+		
 		userDao.save(user);
 		return 1;
 	}

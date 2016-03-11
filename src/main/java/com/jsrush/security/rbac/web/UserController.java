@@ -23,22 +23,43 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 用户管理
+ */
 @Controller
-@RequestMapping(value = "user")
+@RequestMapping(value = "/user")
 public class UserController {
-    @Autowired
+    
+	@Autowired
     private UserService userService;
-    @Autowired
-    RoleService roleService;
-    @Autowired
-    ShiroManager shiroManager;
+    
+	@Autowired
+	private RoleService roleService;
+    
+	@Autowired
+	private ShiroManager shiroManager;
 
+	/**
+	 * 查看当前系统活动的用户个数
+	 * 
+	 * @param request
+	 * @return
+	 */
     @RequestMapping(value = "/onLineList", method = RequestMethod.GET)
     @ResponseBody
     public Integer getOnlineUser(HttpServletRequest request) {
     	return shiroManager.getOnlineUser(request);
-     }
+    }
      
+    
+    /**
+     * 查询界面用户列表
+     * 
+     * @param params
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
     @RequestMapping(value = "/list")
     @ResponseBody
     public Map<String, Object> list(@RequestParam(value = "params", required = false, defaultValue = "{}") String params,
@@ -46,17 +67,16 @@ public class UserController {
                                     @RequestParam(defaultValue = "10", value = "rows") int pageSize) {
         Long cId = shiroManager.getCurrentRoleId();
         int index = SystemUtil.firstNo(pageNo, pageSize);
-        Role cRole = roleService.findOne(cId);
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-        for (User user : userService.findListWithParams(params,index,pageSize,String.valueOf(cId))) {
-            if (!user.getRoles().contains(cRole)) continue;
+        
+        List<User> users = userService.findListWithParams(params,index,pageSize,String.valueOf(cId));
+        for (User user : users) {
             Map<String, Object> map = new HashMap<>();
             map.put("id", user.getId());
             map.put("name", user.getName());
             map.put("loginName", user.getLoginName());
             map.put("email", user.getEmail());
             map.put("registerDate", user.getRegisterDate().toString());
-            map.put("company", user.getCompanyName());
             if (user.getRole() != null)
                 map.put("role", user.getRole().getRoleName());
             list.add(map);
@@ -65,9 +85,15 @@ public class UserController {
 
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    /**
+     * 根据用户ID查询用户数据
+     *  
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/findById", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String, Object> view(@RequestParam(value = "id") Long id) {
+    public Map<String, Object> findById(@RequestParam(value = "id") Long id) {
         User user = userService.getUser(id);
         Map<String, Object> map = new HashMap<>();
         map.put("id", user.getId());
@@ -75,45 +101,46 @@ public class UserController {
         map.put("loginName", user.getLoginName());
         map.put("email", user.getEmail());
         map.put("registerDate", user.getRegisterDate());
-        map.put("company", user.getCompanyName());
         if (user.getRole() != null)
             map.put("role", user.getRole().getId());
 
         return map;
     }
 
-    /*@RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public String view(@RequestParam(value = "id", required = false, defaultValue = "0") Long id, Model model) {
-        User user = userService.getUser(id);
-        if (user != null)
-            model.addAttribute("user", user);
-
-        return "/system/biz_user_edit";
-    }
-*/
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    /**
+     * 新增或修改用户信息
+     * 
+     * @param id
+     * @param params
+     * @return
+     */
+    @RequestMapping(value = "/saveOrUpdate", method = RequestMethod.POST)
     @ResponseBody
-    public int edit(@RequestParam(value = "id", required = false, defaultValue = "0") Long id, @RequestParam("params") String params) {
-
+    public int saveOrUpdate(@RequestParam(value = "id", required = false, defaultValue = "0") Long id, @RequestParam("params") String params) {
         if (id > 0) {
             userService.saveUser(params);
         } else {
-
             JSONObject jsonObject = JSONObject.fromObject(params);
-            String loginName = jsonObject.getString("loginName");//
+            String loginName = jsonObject.getString("loginName");
             String name = jsonObject.getString("name");//
-            String password = "";//
+            String password = "";
             if (jsonObject.containsKey("password"))
                 password = jsonObject.getString("password");
-            String email = jsonObject.getString("email");//
-            Long roleId = jsonObject.getLong("role");//
+            String email = jsonObject.getString("email");
+            Long roleId = jsonObject.getLong("role");
             Role role = roleService.getRole(roleId);
             if (role == null) return 0;
             userService.registerUser(role, loginName, name, password, email);
         }
-        return 1;//"";
+        return 1;
     }
 
+    /**
+     * 删除用户
+     * 
+     * @param ids
+     * @return
+     */
     @RequestMapping(value = "/del", method = RequestMethod.POST)
     @ResponseBody
     public Boolean delete(@RequestParam(value = "params") String ids) {
@@ -125,4 +152,5 @@ public class UserController {
 		}
         return false;
     }
+    
 }
