@@ -9,7 +9,7 @@ String.prototype.replaceAll = function(regexp,replaceValue){
 };
 
 var eui = function(){};
-eui.basePath = '/demo';
+eui.basePath = '/sims';
 
 eui.isArray = function(obj) {   
 	return Object.prototype.toString.call(obj) === '[object Array]';    
@@ -26,7 +26,7 @@ eui.defaultGridOptions = {
 		,	singleSelect:false
 		,	collapsible:true
 		,	method:'post'
-		,	fitColumns:false
+		,	fitColumns:true
 		,	striped:true
 		,	nowrap:false
 		,	rownumbers:true

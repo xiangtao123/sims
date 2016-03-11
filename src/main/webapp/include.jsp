@@ -6,8 +6,8 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
 <title><spring:message code="login.title"></spring:message> - <spring:message code="app.title" /></title>
-<link href="static/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
-<link href="static/images/favicon.ico" rel="icon" type="image/x-icon">
+<link href="${ctx }/static/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<link href="${ctx }/static/images/favicon.ico" rel="icon" type="image/x-icon">
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-import com.jsrush.security.rbac.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,29 +24,36 @@ import com.jsrush.security.rbac.entity.Role;
 import com.jsrush.security.rbac.service.ActionService;
 import com.jsrush.security.rbac.service.RoleService;
 import com.jsrush.security.rbac.service.ShiroManager;
+import com.jsrush.security.rbac.service.UserService;
 import com.jsrush.util.StringHelper;
 
 /**
- * Created by young on 14-10-8.
+ * 角色管理
+ * @author sunburst
  */
 @Controller
-@RequestMapping(value = "role")
+@RequestMapping(value = "/role")
 public class RoleController {
 
     private Logger log = LoggerFactory.getLogger(RoleController.class);
 
     @Autowired
     private RoleService roleService;
+    
     @Autowired
     private ActionService actionService;
+    
     @Autowired
-    UserService userService;
+    private UserService userService;
 
+    @Autowired
+    private ShiroManager shiroManager;
+    
+    
     @RequestMapping(value = "/index")
     public ModelAndView index() {
         ModelAndView view = new ModelAndView("/system/biz_role_action");
         int currentRoleLevel = shiroManager.getCurrentRoleLevel();
-        log.info("currentRoleLevel = " + currentRoleLevel);
         view.addObject("roleLevel", currentRoleLevel);
         return view;
     }
@@ -56,9 +62,6 @@ public class RoleController {
     public Role role(@RequestParam(value = "id", required = false, defaultValue = "0") Long id) {
         return roleService.getRole(id);
     }
-
-    @Autowired
-    private ShiroManager shiroManager;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
@@ -89,10 +92,7 @@ public class RoleController {
                      @RequestParam(value = "ec", required = false, defaultValue = "-1") Long ecId,
                      @RequestParam(value = "name", required = false, defaultValue = "") String name,
                      @RequestParam(value = "actions", required = false, defaultValue = "") List<Long> aIds) {
-        // Set<Long> aboveRoleId = shiroManager.getCurrentAboveRoleId();
-        // Long[] permissions = aboveRoleId.toArray(new
-        // Long[aboveRoleId.size()]);
-        if (shiroManager.getCurrentRoleId() != 1)
+        if (shiroManager.getCurrentRoleLevel() != 1)
             ecId = shiroManager.getCurrentUser().getEcId();
         if (Objects.equals(shiroManager.getCurrentRoleId(), id))
             aIds.clear();
@@ -121,8 +121,7 @@ public class RoleController {
         if (pRole == null) {
             roles.add(currentRole);
         } else {
-            if (pRole.getRoles().contains(currentRole))
-                roles = roleService.getRoleByPId(pRole.getId());
+            roles = roleService.getRoleByPId(pRole.getId());
         }
 
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();

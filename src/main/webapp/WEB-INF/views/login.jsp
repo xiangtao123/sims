@@ -51,7 +51,7 @@
 				AuthenticationException ex = (AuthenticationException) request.getAttribute("shiroLoginFailure");
 				if (ex != null) {
 			%>
-				<div class="alert">
+				<div class="alert" style="width: 64%;">
 					<%=ex.getMessage() %>
 				</div>
 			<%
@@ -138,9 +138,10 @@
 	<script type="text/javascript">
 			var opt = {
 				rules:{
-					username:{required:true,remote:"${ctx}/login/checkLoginName" },
-				 	password:{required:true,remote:{	url: "${ctx}/login/checkPwd", type: "get",  data: { username: function(){return $("#username").val();} } }  }
-					,captcha:{required:true,remote:"${ctx}/login/kaptcha"}
+					// username:{required:true,remote:"${ctx}/login/checkLoginName" },
+				 	// password:{required:true,remote:{	url: "${ctx}/login/checkPwd", type: "get",  data: { username: function(){return $("#username").val();} } }  }
+					// ,
+					captcha:{required:true,remote:"${ctx}/login/kaptcha"}
 				},
 				messages:{
 					username:{required:"登录名不能为空",remote:"登录名不存在"},

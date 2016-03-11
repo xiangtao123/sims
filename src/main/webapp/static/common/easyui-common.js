@@ -66,13 +66,13 @@ easyuiCommon.bindResize = function(){
  * 加载工作台内容
  * 
  */
-easyuiCommon.homeLinkUrl = '/dispatcher/system/biz_operate_log';
-easyuiCommon.homeTitle = '操作日志';
+easyuiCommon.homeLinkUrl = '';//'/dispatcher/system/biz_operate_log';
+easyuiCommon.homeTitle = '欢迎登录' //'操作日志';
 easyuiCommon.loadWorkSpace = function() {
 	var nodeId = 'homeLink';
 	var title = '我的首页';
 	var targetUrl = easyuiCommon.homeLinkUrl;
-	var htmlContent = '<div class="info" style="margin:20px;" >'+ easyuiCommon.homeTitle +'</div>'; // '<div class="info" style="margin:20px;" >参会人员报到统计</div>';
+	var htmlContent = '<div class="info" style="margin:20px;" >'+ easyuiCommon.homeTitle +'</div>'; // '<div class="info" style="margin:20px;" >您有新消息</div>';
 	easyuiCommon.addTab(nodeId, title, targetUrl, htmlContent, false);
 };
 

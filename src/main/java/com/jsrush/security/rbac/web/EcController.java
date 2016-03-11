@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping(value = "ecinfor")
+@RequestMapping(value = "/ecinfor")
 public class EcController {
 
     @Autowired

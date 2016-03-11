@@ -7,8 +7,8 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<link href="static/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
-<link href="static/images/favicon.ico" rel="icon" type="image/x-icon">
+<link href="${ctx }/static/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<link href="${ctx }/static/images/favicon.ico" rel="icon" type="image/x-icon">
 
 		
 <link rel="stylesheet" type="text/css" href="${ctx }/static/jquery-easyui-1.4/themes/bootstrap/easyui.css">

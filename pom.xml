@@ -381,6 +381,7 @@
               <maxIdleTime>${project.jetty.maxIdleTime}</maxIdleTime>
             </connector>
           </connectors>
+          <webDefaultXml>src/test/resources/mvn-jetty/webdefault.xml</webDefaultXml>
         </configuration>
       </plugin>
       

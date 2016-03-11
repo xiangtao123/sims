@@ -104,8 +104,10 @@ public class RoleService {
 			role = new Role();
 			Role parentRole = getRole(pId);
 			role.setParentRole(parentRole);
-			role.getRoles().addAll(parentRole.getRoles());
-			role.getRoles().add(role);
+			Set<Role> permRoles = role.getRoles();
+			permRoles.addAll(parentRole.getRoles());
+			permRoles.add(role);
+			permRoles.add(parentRole);
 		} else {
 			role = getRole(id);
 		}
