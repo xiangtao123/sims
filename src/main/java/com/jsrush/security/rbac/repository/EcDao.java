@@ -11,7 +11,5 @@ public interface EcDao extends PagingAndSortingRepository<Ec, Long> ,EcDaoCustom
 
 	List<Ec> findByCorpName(String name);
 
-	List<Ec> findByCardid(String cardid);
-
 	List<Ec> findByCorpAccount(String corpAccount);
 }

@@ -24,7 +24,7 @@
 				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop> 
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
-				<prop key="hibernate.ejb.naming_strategy">${hibernate.ejb.naming_strategy}</prop>
+				<!-- <prop key="hibernate.ejb.naming_strategy">${hibernate.ejb.naming_strategy}</prop> -->
 			</props>
 		</property>
 	</bean>
