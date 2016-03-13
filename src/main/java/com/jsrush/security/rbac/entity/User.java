@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -26,26 +27,28 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @Table(name = "t_jsrush_user")
 public class User extends IdEntity {
 
+	private static final long serialVersionUID = 635677273154702097L;
+	
 	private String loginName;
+	
 	private String name;
+	
 	private String plainPassword;
+	
 	private String password;
+	
 	private String salt;
+	
 	private Role role;
+	
 	private Date registerDate;
+	
 	private String email;
-	private String companyName;
+	
 	private String areaInformation;
-	private String companyPhone;
-	private String companyFax;
+	 
 	private Set<Role> roles = new HashSet<Role>();// 管理权限的role collections.
 	
-	public User() {
-	}
-
-	public User(Long id) {
-		this.id = id;
-	}
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "role_id")
@@ -57,6 +60,7 @@ public class User extends IdEntity {
 		this.role = role;
 	}
 
+	@Column(name="email")
 	public String getEmail() {
 		return email;
 	}
@@ -65,14 +69,7 @@ public class User extends IdEntity {
 		this.email = email;
 	}
 
-	public String getCompanyName() {
-		return companyName;
-	}
-
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
-	}
-
+	@Column(name="area_information")
 	public String getAreaInformation() {
 		return areaInformation;
 	}
@@ -81,23 +78,8 @@ public class User extends IdEntity {
 		this.areaInformation = areaInformation;
 	}
 
-	public String getCompanyPhone() {
-		return companyPhone;
-	}
-
-	public void setCompanyPhone(String companyPhone) {
-		this.companyPhone = companyPhone;
-	}
-
-	public String getCompanyFax() {
-		return companyFax;
-	}
-
-	public void setCompanyFax(String companyFax) {
-		this.companyFax = companyFax;
-	}
-
 	@NotNull
+	@Column(name="login_name")
 	public String getLoginName() {
 		return loginName;
 	}
@@ -107,6 +89,7 @@ public class User extends IdEntity {
 	}
 
 	@NotNull
+	@Column(name="name")
 	public String getName() {
 		return name;
 	}
@@ -118,6 +101,7 @@ public class User extends IdEntity {
 	// 不持久化到数据库，也不显示在Restful接口的属性.
 	@Transient
 	@JsonIgnore
+	@Column(name="plain_password")
 	public String getPlainPassword() {
 		return plainPassword;
 	}
@@ -126,6 +110,7 @@ public class User extends IdEntity {
 		this.plainPassword = plainPassword;
 	}
 
+	@Column(name="password")
 	@JsonIgnore
 	public String getPassword() {
 		return password;
@@ -136,6 +121,7 @@ public class User extends IdEntity {
 	}
 
 	@JsonIgnore
+	@Column(name="salt")
 	public String getSalt() {
 		return salt;
 	}
@@ -146,6 +132,7 @@ public class User extends IdEntity {
 
 	// 设定JSON序列化时的日期格式
 	@JsonSerialize(using = TimestampJsonSerializer.class)
+	@Column(name="register_date")
 	public Date getRegisterDate() {
 		return registerDate;
 	}

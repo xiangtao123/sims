@@ -1,17 +1,18 @@
 package com.jsrush.security.rbac.service;
 
+import java.util.List;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.jsrush.security.rbac.entity.Ec;
 import com.jsrush.security.rbac.entity.Role;
 import com.jsrush.security.rbac.repository.EcDao;
 import com.jsrush.security.rbac.repository.RoleDao;
 import com.jsrush.security.rbac.vo.EcDTO;
 import com.jsrush.util.DateUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Set;
 
 @Service
 @Transactional(readOnly = true)
@@ -73,34 +74,16 @@ public class EcService {
 
     private void updateEc(Ec entity, EcDTO dto) {
         entity.setActionState(dto.getActionState());
-        entity.setBizcode(dto.getBizcode());
-        entity.setCardid(dto.getCardid());
         entity.setCorpAccount(dto.getCorpAccount());
         entity.setCorpName(dto.getCorpName());
-        entity.setCustomerMng(dto.getCustomerMng());
-        entity.setCustomerMngNo(dto.getCustomerMngNo());
-        entity.setEmail(dto.getEmail());
-        entity.setEnglishName(dto.getEnglishName());
-        entity.setEshortName(dto.getShortName());
-        entity.setFax(dto.getFax());
-        entity.setGroupLogoUrl(dto.getGroupLogoURL());
-        entity.setLicense(dto.getLicense());
         entity.setLinkMan(dto.getLinkMan());
-        entity.setMgrLinkNo(dto.getMgrLinkNo());
         entity.setPhoneNum(dto.getPhoneNum());
-        entity.setPostCode(dto.getPostCode());
-        entity.setShortName(dto.getShortName());
-        entity.setWapUrl(dto.getWapURL());
-        entity.setWwwUrl(dto.getWwwURL());
-        entity.setCorpCode(dto.getCorpCode());
-        entity.setRegistrationNo(dto.getRegistrationNo());
     }
 
     public List<Ec> getAll() {
         return ecDao.findAll();
     }
 
-    @SuppressWarnings("unchecked")
     public List<Ec> findByCorpNameLike(String name, int index, int pageSize) {
         return ecDao.findByCorpNameLike(name, index, pageSize);
     }
@@ -111,10 +94,6 @@ public class EcService {
 
     public boolean valadateCorpName(String name) {
         return ecDao.findByCorpName(name).size() == 0;
-    }
-
-    public boolean validateCardid(String cardId) {
-        return ecDao.findByCardid(cardId).size() == 0;
     }
 
     public boolean validateCorpAccount(String corpAccount) {

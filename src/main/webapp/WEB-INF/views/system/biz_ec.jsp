@@ -26,16 +26,6 @@
                     <input class="easyui-textbox" type="text" name="corpAccount"
                            data-options="required:true" style="width: 100%">
                 </div>
-                <div class="field">
-                    <label>集团证件号:</label>
-                    <input class="easyui-textbox" type="text" name="cardid"
-                           data-options="required:true" style="width: 100%">
-                </div>
-                <div class="field">
-                    <label>集团邮箱:</label>
-                    <input class="easyui-textbox" type="text" name="email"
-                           data-options="required:true,validType:'email'" style="width: 100%">
-                </div>
                 <div>
                     <div class="field" style="float: left;width: 48%">
                         <label>集团联系人:</label>
@@ -87,12 +77,9 @@
 	    <thead>
 	    <tr>
 	        <th data-options="field:'id',width:80,checkbox:true">编号</th>
-	        <!--<th data-options="field:'groupLogoUrl',width:80">Logo</th>-->
 	        <th data-options="field:'corpName',width:100">集团名称</th>
 	        <th data-options="field:'corpAccount',width:100">集团客户帐号</th>
 	        <th data-options="field:'linkMan',width:200">集团联系人</th>
-	        <th data-options="field:'cardid',width:150">集团证件号:</th>
-	        <th data-options="field:'email',width:150">集团邮箱:</th>
 	        <th data-options="field:'linkMan',width:150">集团联系人:</th>
 	        <th data-options="field:'phoneNum',width:150">集团联系人电话:</th>
 	        <th data-options="field:'actionState',width:150">受理状态</th>
@@ -152,7 +139,6 @@
 
             $.post("${ctx}/ecinfor/edit", data)
                 .done(function (data) {
-                    console.log(data);
                     if (data != 1)
                         $.messager.alert('失败', errors[data - 2], 'error');
                     else {
