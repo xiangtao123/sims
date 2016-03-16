@@ -1,5 +1,7 @@
 package com.jsrush.common.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,10 +15,11 @@ import javax.persistence.MappedSuperclass;
  * 
  * @author sunburst
  */
-// JPA 基类的标识
 @MappedSuperclass
-public abstract class IdEntity {
+public abstract class IdEntity implements Serializable {
 
+	private static final long serialVersionUID = -6790531308266488978L;
+	
 	protected Long id;
 
 	@Id
