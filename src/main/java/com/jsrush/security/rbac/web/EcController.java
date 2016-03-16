@@ -71,8 +71,6 @@ public class EcController {
         JSONObject jsonObject = JSONObject.fromObject(params);
         String name = jsonObject.getString("corpName");// 集团名称
         String corpAccount = jsonObject.getString("corpAccount");// 集团客户帐号
-        String cardid = jsonObject.getString("cardid");// 集团证件号
-        String email = jsonObject.getString("email");// 集团邮箱
         String contact = jsonObject.getString("linkMan");// 集团联系人
         String contact_phone = jsonObject.getString("phoneNum");// 集团联系人电话
 
@@ -80,8 +78,6 @@ public class EcController {
         if (ec == null) {
             if (!ecService.valadateCorpName(name))
                 return 2;// "集团名称已存在！";
-            if (!ecService.validateCardid(cardid))
-                return 3;// "企业证件号已存在！";
             if (!ecService.validateCorpAccount(corpAccount))
                 return 4;// "企业客户帐号已存在！";
 
@@ -89,13 +85,11 @@ public class EcController {
         }
         ec.setCorpName(name);
         ec.setCorpAccount(corpAccount);
-        ec.setCardid(cardid);
-        ec.setEmail(email);
         ec.setLinkMan(contact);
         ec.setPhoneNum(contact_phone);
-
+        
         ecService.saveEc(ec);
-        return 1;// "";
+        return 1;
     }
 
     @RequestMapping(value = "/del", method = RequestMethod.POST)

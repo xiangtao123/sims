@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -13,12 +14,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.jsrush.common.entity.IdEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jsrush.common.entity.IdEntity;
 
 @Entity
 @Table(name="t_jsrush_role")	
 public class Role extends IdEntity {
+
+	private static final long serialVersionUID = -8770668042883611167L;
 
 	private String roleName;
 	
@@ -28,12 +31,13 @@ public class Role extends IdEntity {
 
 	private Role parentRole;
 	
-	private Set<Role> childRole;
+	private Set<Role> childRole = new HashSet<Role>();
 	
 	private Set<User> user = new HashSet<User>();
 	
 	private Set<Role> roles = new HashSet<Role>();//管理权限的role collections.
 	
+	@Column(name="role_name")
 	public String getRoleName() {
 		return roleName;
 	}

@@ -73,9 +73,6 @@ public class UserService {
 		User user = new User();
 		user = userDao.findOne(userVO.getId());
 		user.setAreaInformation(userVO.getAreaInformation());
-		user.setCompanyFax(userVO.getCompanyFax());
-		user.setCompanyName(userVO.getCompanyName());
-		user.setCompanyPhone(userVO.getCompanyPhone());
 		user.setEmail(userVO.getEmail());
 		user.setName(userVO.getName());
 

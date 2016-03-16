@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -13,14 +14,21 @@ import javax.persistence.Table;
 
 import com.jsrush.common.entity.IdEntity;
 
+/**
+ * 系统资源
+ * 
+ * @author sunburst
+ */
 @Entity
 @Table(name = "t_jsrush_action")
 public class Action extends IdEntity {
 
+	private static final long serialVersionUID = -6849989438833693607L;
+
 	private String actionName;			// 主键名称
 
 	private Action action;				//	上级
-
+	
 	private String actionText;			//	显示的名字
 	
 	private String type;					// 资源类型：模块：module, 页面：page，元素：element
@@ -33,6 +41,7 @@ public class Action extends IdEntity {
 	
 	private Set<Role> roles = new HashSet<Role>();
 	
+	@Column(name="action_name")
 	public String getActionName() {
 		return actionName;
 	}
@@ -41,6 +50,7 @@ public class Action extends IdEntity {
 		this.actionName = actionName;
 	}
 
+	@Column(name="action_text")
 	public String getActionText() {
 		return actionText;
 	}
@@ -86,6 +96,7 @@ public class Action extends IdEntity {
 		return type;
 	}
 
+	@Column(name="target_url")
 	public String getTargetUrl() {
 		return targetUrl;
 	}
