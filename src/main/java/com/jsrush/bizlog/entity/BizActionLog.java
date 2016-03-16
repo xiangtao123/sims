@@ -14,22 +14,23 @@ import javax.persistence.Table;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.jsrush.bizlog.constants.BizLogActionType;
 import com.jsrush.common.entity.IdEntity;
 import com.jsrush.security.rbac.entity.Role;
 import com.jsrush.util.TimestampJsonSerializer;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Entity
 @Table(name = "t_jsrush_bizaction_log")
 public class BizActionLog extends IdEntity{
 
+	private static final long serialVersionUID = -7935195165150465446L;
+
 	private String actionType = BizLogActionType.TEMPSTR;	//	操作类型
 	
 	private String bizType;								//	业务类型
 	
-	@Column(columnDefinition="mediumtext")
 	private String bizContent;							//	业务信息
 	
 	private String bizInfo;								//	业务元信息
@@ -42,35 +43,40 @@ public class BizActionLog extends IdEntity{
 
 	private Set<Role> roles = new HashSet<Role>();		//	管理权限的role collections.
 	
+	@Column(name="action_type")
 	public String getActionType() {
 		return actionType;
 	}
 
+	@Column(name="biz_type")
 	public String getBizType() {
 		return bizType;
 	}
 
+	@Column(name="biz_content")
 	public String getBizContent() {
 		return bizContent;
 	}
 
-	
-	@Column(length=512)
 	@JsonIgnore
+	@Column(name="biz_info",length=512)
 	public String getBizInfo() {
 		return bizInfo;
 	}
 	
+	@Column(name="creator_id")
 	@JsonIgnore
 	public Long getCreatorId() {
 		return creatorId;
 	}
 
+	@Column(name="creator_name")
 	public String getCreatorName() {
 		return creatorName;
 	}
 
 	@JsonSerialize(using=TimestampJsonSerializer.class)
+	@Column(name="create_time")
 	public Timestamp getCreateTime() {
 		return createTime;
 	}

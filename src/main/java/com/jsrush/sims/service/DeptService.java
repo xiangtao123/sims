@@ -1,6 +1,7 @@
 package com.jsrush.sims.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.jsrush.sims.entity.Dept;
 
@@ -19,7 +20,7 @@ public interface DeptService {
 	 * @param pageSize
 	 * @return
 	 */
-	List<Dept> findPageList(Dept condtion, Integer pageNo, Integer pageSize);
+	Map<String, Object> findPageList(Dept condtion, Integer pageNo, Integer pageSize);
 	
 	/**
 	 * 新增或更新
