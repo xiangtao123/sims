@@ -2,6 +2,7 @@ package com.jsrush.sims.test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,9 +31,9 @@ public class DeptServiceTest extends BaseTest {
 		condtion.setEcId(1L);
 		Integer pageNo=1;
 		Integer pageSize=10;
-		List<Dept> list = deptService.findPageList(condtion, pageNo, pageSize);
-		Assert.assertNotNull(list);
-		logger.info(JSONObject.toJSONString(list));
+		Map<String, Object> pageMap = deptService.findPageList(condtion, pageNo, pageSize);
+		Assert.assertNotNull(pageMap);
+		logger.info(JSONObject.toJSONString(pageMap));
 	}
 	
 	@Test

@@ -1,6 +1,7 @@
 package com.jsrush.sims.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +19,9 @@ public class DeptServiceImpl implements DeptService {
 	private DeptRepository deptRepository;
 	
 	@Override
-	public List<Dept> findPageList(Dept condition, Integer pageNo, Integer pageSize) {
-		List<Dept> list = deptRepository.findPageList(condition, pageNo, pageSize);
-		return list;
+	public Map<String, Object> findPageList(Dept condition, Integer pageNo, Integer pageSize) {
+		Map<String, Object> pageMap = deptRepository.findPageList(condition, pageNo, pageSize);
+		return pageMap;
 	}
 
 	@Override
