@@ -11,20 +11,20 @@
 </head>
 <body>
 	<div class="easyui-panel" title='<spring:message code="common.search.condition"></spring:message>' >
-		<form class="easyui-condition-form" id="listForm" action="">
+		<form class="easyui-condition-form" id="listForm" >
 			<table>
 				<tr>
 					<td>院系名称</td>
 					<td>
-						<input name="dept.deptName" class="easyui-textbox" type="text" />
+						<input name="deptName" class="easyui-textbox" type="text" />
 					</td>
 					<td>院系类型</td>
 					<td>
-						<input name="dept.type" class="easyui-textbox" type="text" />
+						<input name="type" class="easyui-textbox" type="text" />
 					</td>
 					<td>备注</td>
 					<td>
-						<input name="dept.remark" class="easyui-textbox" type="text" />
+						<input name="remark" class="easyui-textbox" type="text" />
 					</td>
 				</tr>
 			</table>
@@ -39,25 +39,26 @@
 	<table id="dataGrid" class="easyui-datagrid"></table>
 	
 	<div id="saveOrUpdateDlg" class="easyui-dialog" style="width:320px;height:200px;"
-		data-options="iconCls:'icon-save', title:'录入院系信息',buttons:'#saveOrUpdateDlg-buttons',modal:true">
-		<form class="easyui-condition-form" id="saveOrUpdateForm" action="">
+		data-options="iconCls:'icon-save', title:'录入院系信息',buttons:'#saveOrUpdateDlg-buttons',modal:true,closed:true">
+		<form class="easyui-condition-form" id="saveOrUpdateForm" >
+			<input name="id" type="hidden" />
 			<table border="0" cellpadding="4">
 				<tr>
 					<td>院系名称</td>
 					<td>
-						<input name="dept.deptName" class="easyui-textbox" type="text" data-options="required:true,message:'请输入必填项'" />
+						<input name="deptName" class="easyui-textbox" type="text" data-options="required:true, missingMessage:'请输入必填项'" />
 					</td>
 				</tr>
 				<tr>
 					<td>院系类型</td>
 					<td>
-						<input name="dept.type" class="easyui-textbox" type="text" />
+						<input name="type" class="easyui-textbox" type="text" />
 					</td>
 				</tr>
 				<tr>
 					<td>备注</td>
 					<td>
-						<input name="dept.remark" class="easyui-textbox" type="text" />
+						<input name="remark" class="easyui-textbox" type="text" />
 					</td>
 				</tr>
 			</table>

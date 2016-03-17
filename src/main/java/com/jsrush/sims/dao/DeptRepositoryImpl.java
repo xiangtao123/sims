@@ -64,10 +64,10 @@ public class DeptRepositoryImpl implements DeptRepositoryCustom {
 			query.setParameter("ecId", condition.getEcId());
 		}
 		if (StringUtils.isNotBlank(condition.getType())) {
-			query.setParameter("deptName", "%" + condition.getDeptName() + "%");
+			query.setParameter("type", condition.getType());
 		}
 		if (StringUtils.isNotBlank(condition.getDeptName())) {
-			query.setParameter("type", condition.getType());
+			query.setParameter("deptName", "%" + condition.getDeptName() + "%");
 		}
 	}
 	
