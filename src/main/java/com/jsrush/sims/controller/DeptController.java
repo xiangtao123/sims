@@ -58,14 +58,14 @@ public class DeptController {
 	
 	@RequestMapping(value="/saveOrUpdate")
 	@ResponseBody
-	public int saveOrUpdate(Dept dept) {
+	public int saveOrUpdate(Dept dto) {
 		try {
 			Long currentUserEcId = shiroManager.getCurrentUserEcId();
 			if (currentUserEcId == null || 1 > currentUserEcId) {
 				return -1;
 			}
-			dept.setEcId(currentUserEcId);
-			deptService.saveOrUpdate(dept);
+			dto.setEcId(currentUserEcId);
+			deptService.saveOrUpdate(dto);
 			return 1;
 		} catch (Exception e) {
 			logger.error("部门院系-新增编辑失败", e);

@@ -17,7 +17,7 @@
     
     <!-- jetty:config -->
     <project.jetty.port>8080</project.jetty.port>
-    <project.jetty.scanIntervalSeconds>10</project.jetty.scanIntervalSeconds>
+    <project.jetty.scanIntervalSeconds>0</project.jetty.scanIntervalSeconds>
     <project.jetty.maxIdleTime>2000</project.jetty.maxIdleTime>
     
     <!-- driver config -->

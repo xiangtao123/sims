@@ -30,7 +30,9 @@ Dept.saveOrUpdateAjaxOptions = {
 	success	:	function(data, st, xhr) {
 		if (data == 1) {
 			eui.alert('操作成功：信息成功保存');
-		} if (data == -1) {
+			eui.loadDataGridWithFormDataSelector(Dept.dataGridId, Dept.searchFormInputSelector, Dept.searchParamKey);
+			$('#saveOrUpdateDlg').dialog('close');
+		} else if (data == -1) {
 			eui.alert('操作失败：平台管理员不允许进行此操作','warning');
 		} else {
 			eui.alert('操作失败，程序运行异常','error');
@@ -49,11 +51,11 @@ Dept.bindEvent = function() {
 	});
 	
 	$('#saveOrUpdateBtn').click(function() {
-		var isValid = $(Dept.searchFormId).form('validate');
+		var isValid = $('#saveOrUpdateForm').form('validate');
 		if (!isValid) {
 			return;
 		}
-		Dept.saveOrUpdateAjaxOptions.postData = eui.findFormDataJsonObject(Dept.searchFormInputSelector);
+		Dept.saveOrUpdateAjaxOptions.postData = eui.findFormDataJsonObject('#saveOrUpdateForm :input');
 		eui.commAjax(Dept.saveOrUpdateAjaxOptions);
 	});
 	
