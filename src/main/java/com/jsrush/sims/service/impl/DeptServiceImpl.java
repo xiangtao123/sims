@@ -51,5 +51,10 @@ public class DeptServiceImpl implements DeptService {
 			}
 		}
 	}
+
+	@Override
+	public List<Map<Long, String>> findListByEcId(Long ecId) {
+		return deptRepository.findListByEcId(ecId);
+	}
 	
 }

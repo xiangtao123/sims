@@ -13,7 +13,7 @@ Dept.init = function() {
 		toolbar: [
 		     { iconCls: 'icon-add', handler: function(){ Dept.saveOrUpdateDlg(false) }}
 		   , { iconCls: 'icon-edit', handler: function(){ Dept.saveOrUpdateDlg(true) }} , '-'
-		   , { iconCls: 'icon-remove', handler: function(){ Dept.remove() }}
+		  // , { iconCls: 'icon-remove', handler: function(){ Dept.remove() }}
 		],
 		columns:[[
 			{field:'id', title:'编号', width:80, checkbox:true },

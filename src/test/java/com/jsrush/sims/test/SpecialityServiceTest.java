@@ -11,53 +11,50 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import com.alibaba.fastjson.JSONObject;
 import com.jsrush.security.base.BaseTest;
-import com.jsrush.sims.entity.Dept;
-import com.jsrush.sims.service.DeptService;
+import com.jsrush.sims.entity.Speciality;
+import com.jsrush.sims.service.SpecialityService;
 
 /**
- * 部门院系
+ * 专业
  * 
  * @author sunburst
  */
 @TransactionConfiguration(defaultRollback=true)
-public class DeptServiceTest extends BaseTest {
+public class SpecialityServiceTest extends BaseTest {
 
 	@Autowired
-	private DeptService deptService;
-	
-	@Test
-	public void testFindList() {
-		Long ecId=1L;
-		List<Map<Long, String>> deptList = deptService.findListByEcId(ecId);
-		logger.info(JSONObject.toJSONString(deptList));
-	}
+	private SpecialityService specialityService;
 	
 	@Test
 	public void testFindPageList() {
-		Dept condtion=new Dept();
+		Speciality condtion=new Speciality();
 		condtion.setEcId(1L);
 		Integer pageNo=1;
 		Integer pageSize=10;
-		Map<String, Object> pageMap = deptService.findPageList(condtion, pageNo, pageSize);
+		Map<String, Object> pageMap = specialityService.findPageList(condtion, pageNo, pageSize);
 		Assert.assertNotNull(pageMap);
 		logger.info(JSONObject.toJSONString(pageMap));
 	}
 	
 	@Test
 	public void testSaveOrUpdate() {
-		Dept dto = new Dept();
-		dto.setDeptName("宇航学院");
-		dto.setType("1");
+		Speciality dto = new Speciality();
+		dto.setName("计算机科学与技术");
+		dto.setCode("0010011001");
+		dto.setDegreeType("工学");
+		dto.setLength(4);
+		dto.setOptionCredit(23);
+		dto.setRequireCredit(57);
 		dto.setEcId(1L);
-		dto.setRemark("强地、扬信、拓天");
-		deptService.saveOrUpdate(dto);
+		dto.setDeptId(3L);
+		specialityService.saveOrUpdate(dto);
 	}
 	
 	@Test
 	public void testDelete() {
 		List<Long> ids = new ArrayList<Long>();
 		ids.add(1L);
-		deptService.delete(ids);
+		specialityService.delete(ids);
 	}
 	
 	
