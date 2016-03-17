@@ -11,20 +11,21 @@ import javax.persistence.Query;
 import org.apache.commons.lang3.StringUtils;
 
 import com.jsrush.sims.entity.Dept;
+import com.jsrush.sims.entity.Speciality;
 import com.jsrush.util.SystemUtil;
 
-public class DeptRepositoryImpl implements DeptRepositoryCustom {
+public class SpecialityRepositoryImpl implements SpecialityRepositoryCustom {
 
-	private static final String COMMON_SQL = " select t from Dept t ";
+	private static final String COMMON_SQL = " select t from Speciality t ";
 	
-	private static final String COMMON_COUNT_SQL = " select count(t.id) from Dept t ";
+	private static final String COMMON_COUNT_SQL = " select count(t.id) from Speciality t ";
 	
 	@PersistenceContext
 	private EntityManager em;
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Map<String, Object> findPageList(Dept condition, Integer pageNo, Integer pageSize) {
+	public Map<String, Object> findPageList(Speciality condition, Integer pageNo, Integer pageSize) {
 		String whereSql = makeWhere(condition);
 		
 		StringBuilder countHql = new StringBuilder(COMMON_COUNT_SQL);
@@ -45,45 +46,36 @@ public class DeptRepositoryImpl implements DeptRepositoryCustom {
 		return SystemUtil.createPageInfoMap(pageNo, pageSize, totalCount, resultList);
 	}
 	
-	private String makeWhere(Dept condition) {
+	private String makeWhere(Speciality condition) {
 		StringBuilder hql = new StringBuilder();
 		if (null != condition.getEcId() && 0 < condition.getEcId()) {
 			hql.append(" where t.ecId = :ecId ");
 		}
-		if (StringUtils.isNotBlank(condition.getType())) {
-			hql.append(" and t.type = :type ");
+		if (null != condition.getDeptId() && 0 < condition.getDeptId()) {
+			hql.append(" and t.dept.id = :deptId ");
 		}
-		if (StringUtils.isNotBlank(condition.getDeptName())) {
-			hql.append(" and t.deptName like :deptName ");
+		if (StringUtils.isNotBlank(condition.getCode())) {
+			hql.append(" and t.code = :code ");
+		}
+		if (StringUtils.isNotBlank(condition.getName())) {
+			hql.append(" and t.name like :name ");
 		}
 		return  hql.toString();
 	}
 	
-	private void setQueryParameter(Query query, Dept condition) {
+	private void setQueryParameter(Query query, Speciality condition) {
 		if (null != condition.getEcId() && 0 < condition.getEcId()) {
 			query.setParameter("ecId", condition.getEcId());
 		}
-		if (StringUtils.isNotBlank(condition.getType())) {
-			query.setParameter("type", condition.getType());
+		if (null != condition.getDeptId() && 0 < condition.getDeptId()) {
+			query.setParameter("deptId", condition.getDeptId());
 		}
-		if (StringUtils.isNotBlank(condition.getDeptName())) {
-			query.setParameter("deptName", "%" + condition.getDeptName() + "%");
+		if (StringUtils.isNotBlank(condition.getCode())) {
+			query.setParameter("code", condition.getCode());
 		}
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Map<Long, String>> findListByEcId(Long ecId) {
-		StringBuilder hql = new StringBuilder("  select t.id, t.deptName as name from Dept t ");
-		if (ecId != null) {
-			hql.append(" where t.ecId = :ecId ");
+		if (StringUtils.isNotBlank(condition.getName())) {
+			query.setParameter("name", "%" + condition.getName() + "%");
 		}
-		Query listQuery = em.createQuery(hql.toString());
-		if (ecId != null) {
-			listQuery.setParameter("ecId", ecId);
-		}
-		List<Map<Long, String>> resultList = listQuery.getResultList();
-		return resultList;
 	}
 	
 }

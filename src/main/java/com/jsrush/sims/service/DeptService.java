@@ -35,4 +35,11 @@ public interface DeptService {
 	 */
 	void delete(List<Long> ids);
 	
+	/**
+	 * 查询院系列表
+	 * @param ecId
+	 * @return
+	 */
+	List<Map<Long, String>> findListByEcId(Long ecId);
+		
 }
