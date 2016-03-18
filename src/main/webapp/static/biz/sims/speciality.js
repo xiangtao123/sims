@@ -17,12 +17,14 @@ App.init = function() {
 		],
 		columns:[[
 			{field:'id', title:'编号', width:80, checkbox:true },
-			{field:'dept', title:'院系名称', width:120, formatter:function(value, record) {
-				if (value && value.deptName) {
-					return value.deptName;
-				}
-				return '';
-			} },
+			{field:'deptName', title:'院系名称', width:120, 
+				formatter : function(value, record) {
+					if (record.dept && record.dept.deptName) {
+						return record.dept.deptName;
+					}
+					return '';
+				} 
+			},
 			{field:'name', title:'专业名称', width:120 },
 			{field:'code', title:'专业代码', width:120 },
 			{field:'length', title:'修业年限', width:120 },
@@ -89,7 +91,11 @@ App.saveOrUpdateDlg = function(isEdit) {
 			eui.alert('请选择一条数据进行编辑','warning');
 			return;
 		}
-		$('#saveOrUpdateForm').form('load', rows[0]);
+		var record = rows[0];
+		if (record.dept) {
+			record.deptId = record.dept.id;
+		}
+		$('#saveOrUpdateForm').form('load', record);
 	}
 	$('#saveOrUpdateDlg').dialog('open');
 };
