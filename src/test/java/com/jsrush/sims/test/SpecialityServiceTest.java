@@ -25,6 +25,15 @@ public class SpecialityServiceTest extends BaseTest {
 	@Autowired
 	private SpecialityService specialityService;
 	
+	
+	@Test
+	public void testFindList() {
+		Long ecId=1L;
+		List<Map<Long, String>> dataList = specialityService.findListByEcId(ecId);
+		logger.info(JSONObject.toJSONString(dataList));
+	}
+	
+	
 	@Test
 	public void testFindPageList() {
 		Speciality condtion=new Speciality();

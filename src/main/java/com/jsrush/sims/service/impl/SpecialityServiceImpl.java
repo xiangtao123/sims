@@ -68,4 +68,9 @@ public class SpecialityServiceImpl implements SpecialityService {
 		}
 	}
 	
+	@Override
+	public List<Map<Long, String>> findListByEcId(Long ecId) {
+		return specialityRepository.findListByEcId(ecId);
+	}
+	
 }

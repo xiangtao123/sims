@@ -36,7 +36,7 @@ public interface CourseService {
 	void delete(List<Long> ids);
 	
 	/**
-	 * 查询院系列表
+	 * 查询课程列表
 	 * @param ecId
 	 * @return
 	 */
