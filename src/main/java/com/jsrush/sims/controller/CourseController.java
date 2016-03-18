@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.jsrush.security.rbac.service.ShiroManager;
 import com.jsrush.sims.entity.Course;
 import com.jsrush.sims.service.CourseService;
+import com.jsrush.sims.service.SpecialityService;
 import com.jsrush.util.SystemUtil;
 
 /**
@@ -36,9 +38,15 @@ public class CourseController {
 	@Autowired
 	private CourseService courseService;
 	
+	@Autowired
+	private SpecialityService specialityService;
+	
 	@RequestMapping("/index")
-	public String index() {
-		return "sims/dept_index";
+	public String index(Model model) {
+		Long currentUserEcId = shiroManager.getCurrentUserEcId();
+		List<Map<Long, String>> deptList = specialityService.findListByEcId(currentUserEcId);
+		model.addAttribute("specialityList", deptList);
+		return "sims/course_index";
 	}
 	
 	@RequestMapping(value="/list")

@@ -18,7 +18,7 @@ public interface CourseRepositoryCustom {
 	Map<String, Object> findPageList(Course condition, Integer pageNo, Integer pageSize);
 	
 	/**
-	 * 查询院系列表
+	 * 查询课程列表
 	 * @param ecId
 	 * @return
 	 */

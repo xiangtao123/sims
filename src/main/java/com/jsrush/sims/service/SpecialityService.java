@@ -34,4 +34,12 @@ public interface SpecialityService {
 	 * @param ids
 	 */
 	void delete(List<Long> ids);
+	
+	/**
+	 * 查询专业列表
+	 * @param ecId
+	 * @return
+	 */
+	List<Map<Long, String>> findListByEcId(Long ecId);
+	
 }

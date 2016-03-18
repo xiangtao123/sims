@@ -78,4 +78,20 @@ public class SpecialityRepositoryImpl implements SpecialityRepositoryCustom {
 		}
 	}
 	
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Map<Long, String>> findListByEcId(Long ecId) {
+		StringBuilder hql = new StringBuilder("  select t.id, t.name from Speciality t ");
+		if (ecId != null) {
+			hql.append(" where t.ecId = :ecId ");
+		}
+		Query listQuery = em.createQuery(hql.toString());
+		if (ecId != null) {
+			listQuery.setParameter("ecId", ecId);
+		}
+		List<Map<Long, String>> resultList = listQuery.getResultList();
+		return resultList;
+	}
+	
 }

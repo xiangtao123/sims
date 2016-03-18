@@ -28,8 +28,8 @@ public class CourseServiceTest extends BaseTest {
 	@Test
 	public void testFindList() {
 		Long ecId=1L;
-		List<Map<Long, String>> deptList = courseService.findListByEcId(ecId);
-		logger.info(JSONObject.toJSONString(deptList));
+		List<Map<Long, String>> dataList = courseService.findListByEcId(ecId);
+		logger.info(JSONObject.toJSONString(dataList));
 	}
 	
 	@Test
