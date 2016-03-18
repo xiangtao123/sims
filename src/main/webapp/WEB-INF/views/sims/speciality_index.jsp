@@ -45,7 +45,7 @@
 	
 	<table id="dataGrid" class="easyui-datagrid"></table>
 	
-	<div id="saveOrUpdateDlg" class="easyui-dialog" style="width:520px;height:400px;"
+	<div id="saveOrUpdateDlg" class="easyui-dialog" style="width:520px;height:220px;"
 		data-options="iconCls:'icon-save', title:'录入院系信息',buttons:'#saveOrUpdateDlg-buttons',modal:true,closed:true">
 		<form class="easyui-condition-form" id="saveOrUpdateForm" >
 			<input name="id" type="hidden" />
