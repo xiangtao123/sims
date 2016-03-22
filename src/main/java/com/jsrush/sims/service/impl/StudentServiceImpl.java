@@ -1,5 +1,7 @@
 package com.jsrush.sims.service.impl;
 
+import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -10,10 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.jsrush.sims.dao.StudentRepository;
 import com.jsrush.sims.entity.Student;
 import com.jsrush.sims.service.StudentService;
+import com.jsrush.util.DateUtil;
 
 
 @Service("studentService")
-@Transactional
+@Transactional(readOnly=false)
 public class StudentServiceImpl implements StudentService {
 
 	@Autowired
@@ -26,7 +29,6 @@ public class StudentServiceImpl implements StudentService {
 		return pageMap;
 	}
 
-	
 	@Override
 	public void saveOrUpdate(Student dto) {
 		Student entity = null;
@@ -48,17 +50,32 @@ public class StudentServiceImpl implements StudentService {
 		entity.setName(dto.getName());
 		entity.setNation(dto.getNation());
 		entity.setPoliticalStatus(dto.getPoliticalStatus());
-		entity.setRegisterTime(dto.getRegisterTime());
+		entity.setRegisterTime(DateUtil.getNowTimestamp());
 		entity.setStudentNo(dto.getStudentNo());
 		entity.setUserId(dto.getUserId());
-		
+		entity.setGraduationDate(dto.getGraduationDate());
+		entity.setDegreeDate(dto.getDegreeDate());
+		entity.setSpecialityId(dto.getSpecialityId());
 		studentRepository.save(entity);
 	}
 
 
+	@Transactional(readOnly=false)
 	@Override
 	public void updateStudent(Student dto, Set<Long> studentIds) {
-		studentRepository.updateStudent(dto, studentIds);
+		int auditState = dto.getAuditState();
+		String auditRemark = dto.getAuditRemark();
+		Timestamp nowTimestamp = DateUtil.getNowTimestamp();
+		
+		Set<Student> list = new HashSet<Student>();
+		for (Long id : studentIds) {
+			Student entity = studentRepository.findOne(id);
+			entity.setAuditState(auditState);
+			entity.setAuditRemark(auditRemark);
+			entity.setAuditTime(nowTimestamp);
+			list.add(entity);
+		}
+		studentRepository.save(list);
 	}
 
 

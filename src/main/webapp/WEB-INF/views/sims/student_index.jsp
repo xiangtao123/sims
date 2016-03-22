@@ -25,8 +25,9 @@
 				</tr>
 				<tr>
 					<td>专业</td>
-					<td colspan="3">
-						<select name="specialityIds" class="easyui-combobox" data-options="multiple:true" style="width: 320px;">
+					<td>
+						<select name="specialityId" class="easyui-combobox"  >
+							<option value="">请选择</option>
 							<c:if test="${specialityList != null }">
 								<c:forEach items="${specialityList }" var="item">
 								<option value="${item[0] }">${item[1] }</option>
@@ -50,11 +51,15 @@
 	
 	<table id="dataGrid" class="easyui-datagrid"></table>
 	
-	<div id="saveOrUpdateDlg" class="easyui-dialog" style="width:520px;height:220px;"
-		data-options="iconCls:'icon-save', title:'录入院系信息',buttons:'#saveOrUpdateDlg-buttons',modal:true,closed:true">
+	<div id="saveOrUpdateDlg" class="easyui-dialog" style="width:620px;"
+		data-options="iconCls:'icon-save', title:'录入信息',buttons:'#saveOrUpdateDlg-buttons',modal:true,closed:true">
 		<form class="easyui-condition-form" id="saveOrUpdateForm" >
 			<input name="id" type="hidden" />
-			<table border="0" cellpadding="4">
+			<table border="0" cellpadding="4" style="width: 100%;">
+				<col width="20%" />
+				<col width="30%" />
+				<col width="20%" />
+				<col width="30%" />
 				<tr>
 					<td>学号</td>
 					<td>
@@ -63,16 +68,16 @@
 					
 					<td>身份证号</td>
 					<td>
-						<input name="idNo" class="easyui-textbox" type="text" data-options="required:true, missingMessage:'请输入必填项'" />
-					</td>
-					
-					<td>姓名</td>
-					<td>
-						<input name="name" class="easyui-textbox" type="text" data-options="required:true, missingMessage:'请输入必填项'" />
+						<input name="idNo" class="easyui-textbox" style="width: 140px;" type="text" data-options="required:true, missingMessage:'请输入必填项'" />
 					</td>
 										
 				</tr>
 				<tr>
+					<td>姓名</td>
+					<td>
+						<input name="name" class="easyui-textbox" type="text" data-options="required:true, missingMessage:'请输入必填项'" />
+					</td>
+					
 					<td>性别</td>
 					<td>
 						<select name="gender" class="easyui-combobox">
@@ -81,7 +86,9 @@
 							<option value="2">女</option>
 						</select>
 					</td>
-					
+				</tr>
+				
+				<tr>
 					<td>出生日期</td>
 					<td>
 						<input name="birthDay" class="easyui-datebox" type="text" data-options="required:true, missingMessage:'请输入必填项'" />
@@ -91,7 +98,6 @@
 					<td>
 						<input name="nation" class="easyui-textbox" type="text" />
 					</td>
-					
 				</tr>
 				
 				<tr>
@@ -104,14 +110,14 @@
 					<td>
 						<input name="email" class="easyui-textbox" type="text" />
 					</td>
-					
-					<td>家庭住址</td>
-					<td>
-						<input name="homeAddr" class="easyui-textbox" type="text" />
-					</td>
-										
+															
 				</tr>
-				
+				<tr>
+					<td>家庭住址</td>
+					<td colspan="3">
+						<textarea name="homeAddr" rows="2" style="width:260px;height:40px;"></textarea>
+					</td>
+				</tr>
 				<tr>
 					<td>政治面貌</td>
 					<td>
@@ -123,8 +129,8 @@
 					</td>
 					
 					<td>专业</td>
-					<td colspan="3">
-						<select name="specialityIds" class="easyui-combobox" data-options="multiple:true" style="width: 320px;">
+					<td>
+						<select name="specialityId" class="easyui-combobox">
 							<c:if test="${specialityList != null }">
 								<c:forEach items="${specialityList }" var="item">
 								<option value="${item[0] }">${item[1] }</option>
@@ -132,25 +138,26 @@
 							</c:if>
 						</select>
 					</td>
-					
+										
+				</tr>
+				<tr>
 					<td>入学日期</td>
 					<td>
 						<input name="enrollDate" class="easyui-datebox" type="text" data-options="required:true, missingMessage:'请输入必填项'" />
 					</td>
 					
-				</tr>
-				<tr>
 					<td>毕业日期</td>
 					<td>
 						<input name="graduationDate" class="easyui-datebox" type="text" data-options="required:true, missingMessage:'请输入必填项'" />
 					</td>
-					
+										
+				</tr>
+				<tr>
 					<td>授予学位日期</td>
 					<td>
 						<input name="degreeDate" class="easyui-datebox" type="text" data-options="required:true, missingMessage:'请输入必填项'" />
 					</td>
-				</tr>
-				<tr>
+					
 					<td>审核状态</td>
 					<td>
 						<select name="auditState" class="easyui-combobox" >
@@ -159,10 +166,11 @@
 							<option value="2">不通过</option>
 						</select>
 					</td>
-					
+				</tr>
+				<tr>
 					<td>审核意见</td>
-					<td>
-						<textarea rows="4" style="width:260px;height:60px;"></textarea>
+					<td colspan="3">
+						<textarea name="auditRemark" rows="2" style="width:260px;height:40px;"></textarea>
 					</td>
 				</tr>
 				
@@ -172,6 +180,39 @@
 	<div id="saveOrUpdateDlg-buttons">
 		<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-save'" id="saveOrUpdateBtn">保存</a>
 		<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" id="cancelBtn">取消</a>
+	</div>
+	
+	<div id="auditDlg" class="easyui-dialog" style="width:420px;"
+		data-options="iconCls:'icon-save', title:'录入信息',buttons:'#auditDlg-buttons',modal:true,closed:true">
+		<form class="easyui-condition-form" id="auditForm" >
+			<table border="0" cellpadding="4" style="width: 100%;">
+				<col width="20%" />
+				<col width="30%" />
+				<col width="20%" />
+				<col width="30%" />
+			 	
+				<tr>
+					<td>审核状态</td>
+					<td colspan="3">
+						<select name="auditState" class="easyui-combobox" data-options="required:true, missingMessage:'请输入必填项'" >
+							<option value="1">通过</option>
+							<option value="2">不通过</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>审核意见</td>
+					<td colspan="3">
+						<textarea name="auditRemark" rows="2" style="width:220px;height:40px;" ></textarea>
+					</td>
+				</tr>
+				
+			</table>
+		</form>
+	</div>
+	<div id="auditDlg-buttons">
+		<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-save'" id="auditSaveBtn">保存</a>
+		<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" id="auditCancelBtn">取消</a>
 	</div>
 	
 	<jsp:include page="/include_biz.jsp"></jsp:include>

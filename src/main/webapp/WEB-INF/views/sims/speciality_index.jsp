@@ -46,12 +46,12 @@
 	<table id="dataGrid" class="easyui-datagrid"></table>
 	
 	<div id="saveOrUpdateDlg" class="easyui-dialog" style="width:520px;height:220px;"
-		data-options="iconCls:'icon-save', title:'录入院系信息',buttons:'#saveOrUpdateDlg-buttons',modal:true,closed:true">
+		data-options="iconCls:'icon-save', title:'录入信息',buttons:'#saveOrUpdateDlg-buttons',modal:true,closed:true">
 		<form class="easyui-condition-form" id="saveOrUpdateForm" >
 			<input name="id" type="hidden" />
 			<table border="0" cellpadding="4">
 				<tr>
-					<td>院系名称</td>
+					<td>专业名称</td>
 					<td>
 						<input name="name" class="easyui-textbox" type="text" data-options="required:true, missingMessage:'请输入必填项'" />
 					</td>
