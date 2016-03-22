@@ -3,7 +3,6 @@ package com.jsrush.sims.dao;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -86,20 +85,6 @@ public class StudentRepositoryImpl implements StudentRepositoryCustom {
 		if (StringUtils.isNotBlank(condition.getIdNo())) {
 			query.setParameter("idNo", condition.getIdNo());
 		}
-	}
-
-	@Override
-	public void updateStudent(Student dto, Set<Long> studentIds) {
-		StringBuilder hql = new StringBuilder(" update Student t set t.auditState = :auditState, t.auditTime = :auditTime, t.auditRemark = :auditRemark ");
-		hql.append(" where t.id in (:studentIds) ");
-		
-		Query query = em.createQuery(hql.toString());
-		query.setParameter("auditState", dto.getAuditState());
-		query.setParameter("auditTime", dto.getAuditTime());
-		query.setParameter("auditRemark", dto.getAuditRemark());
-		query.setParameter("studentIds", studentIds);
-		
-		query.executeUpdate();
 	}
 
 	@SuppressWarnings("unchecked")

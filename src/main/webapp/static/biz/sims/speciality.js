@@ -11,8 +11,8 @@ App.init = function() {
 		url: eui.basePath + '/speciality/list',
 		method:'post',
 		toolbar: [
-		     { iconCls: 'icon-add', handler: function(){ App.saveOrUpdateDlg(false) }}
-		   , { iconCls: 'icon-edit', handler: function(){ App.saveOrUpdateDlg(true) }} , '-'
+		          { text:'新增', iconCls: 'icon-add', handler: function(){ App.saveOrUpdateDlg(false) }}
+		        , { text:'编辑', iconCls: 'icon-edit', handler: function(){ App.saveOrUpdateDlg(true) }} , '-'
 		  // , { iconCls: 'icon-remove', handler: function(){ App.remove() }}
 		],
 		columns:[[

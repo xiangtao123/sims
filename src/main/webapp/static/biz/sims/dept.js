@@ -11,8 +11,8 @@ Dept.init = function() {
 		url: eui.basePath + '/dept/list',
 		method:'post',
 		toolbar: [
-		     { iconCls: 'icon-add', handler: function(){ Dept.saveOrUpdateDlg(false) }}
-		   , { iconCls: 'icon-edit', handler: function(){ Dept.saveOrUpdateDlg(true) }} , '-'
+				{ text:'新增', iconCls: 'icon-add', handler: function(){ App.saveOrUpdateDlg(false) }}
+			, 	{ text:'编辑', iconCls: 'icon-edit', handler: function(){ App.saveOrUpdateDlg(true) }} , '-'
 		  // , { iconCls: 'icon-remove', handler: function(){ Dept.remove() }}
 		],
 		columns:[[

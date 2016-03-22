@@ -88,7 +88,7 @@ public class StudentController {
 	@ResponseBody
 	public int updateStudent(Student dto, String studentIds) {
 		try {
-			if (StringUtils.isNotBlank(studentIds)) {
+			if (StringUtils.isBlank(studentIds)) {
 				return -1;
 			}
 			Set<Long> ids = new HashSet<Long>();
