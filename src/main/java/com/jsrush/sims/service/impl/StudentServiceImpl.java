@@ -52,10 +52,17 @@ public class StudentServiceImpl implements StudentService {
 		entity.setPoliticalStatus(dto.getPoliticalStatus());
 		entity.setRegisterTime(DateUtil.getNowTimestamp());
 		entity.setStudentNo(dto.getStudentNo());
-		entity.setUserId(dto.getUserId());
-		entity.setGraduationDate(dto.getGraduationDate());
-		entity.setDegreeDate(dto.getDegreeDate());
 		entity.setSpecialityId(dto.getSpecialityId());
+		
+		if (dto.getGraduationDate() != null) {
+			entity.setGraduationDate(dto.getGraduationDate());
+		}
+		if (dto.getDegreeDate() != null) {
+			entity.setDegreeDate(dto.getDegreeDate());
+		}
+		if (dto.getUserId() != null) {
+			entity.setUserId(dto.getUserId());
+		}
 		studentRepository.save(entity);
 	}
 
