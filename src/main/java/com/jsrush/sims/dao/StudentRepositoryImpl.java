@@ -101,6 +101,19 @@ public class StudentRepositoryImpl implements StudentRepositoryCustom {
 		}
 		return student;
 	}
+
+	@Override
+	public List<Map<String, Object>> findListByEcId(Long ecId) {
+		StringBuilder hql = new StringBuilder(" select t.id, t.name, t.studentNo from Student t ");
+		hql.append(" where t.ecId = :ecId ");
+		
+		Query query = em.createQuery(hql.toString());
+		query.setParameter("ecId", ecId);
+		
+		@SuppressWarnings("unchecked")
+		List<Map<String, Object>> resultList = query.getResultList();
+		return resultList;
+	}
 	
 	
 }

@@ -130,6 +130,9 @@ public class ShiroDbRealm extends AuthorizingRealm {
 			}
 			info.setStringPermissions(permisStr);
 			shiroUser.setPermissions(permisStr);
+			
+			Long studentId = shiroManager.findStudentIdByUserId(user.getId());
+			shiroUser.setStudentId(studentId);
 		}
 		return info;
 	}
@@ -157,6 +160,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 		public String corpName;
 		private Long roleId;
 		private int roleLevel = -1;
+		private Long studentId;
 		private Set<Long> aboveRoleId = new HashSet<Long>();
 		private Set<Long> aboveRoleIdSameEc = new HashSet<Long>();
 		private Set<Long> lowerRoleId = new HashSet<Long>();
@@ -295,6 +299,14 @@ public class ShiroDbRealm extends AuthorizingRealm {
 
 		public void setRoleLevel(int roleLevel) {
 			this.roleLevel = roleLevel;
+		}
+
+		public Long getStudentId() {
+			return studentId;
+		}
+
+		public void setStudentId(Long studentId) {
+			this.studentId = studentId;
 		}
 		
 	}

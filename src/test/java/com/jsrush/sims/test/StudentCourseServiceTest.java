@@ -18,7 +18,7 @@ import com.jsrush.sims.service.StudentCourseService;
  * 
  * @author sunburst
  */
-@TransactionConfiguration(defaultRollback=true)
+@TransactionConfiguration(defaultRollback=false)
 public class StudentCourseServiceTest extends BaseTest {
 
 	@Autowired

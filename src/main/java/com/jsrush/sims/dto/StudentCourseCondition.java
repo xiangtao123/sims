@@ -18,6 +18,11 @@ public class StudentCourseCondition implements Serializable {
 	private Long courseId;
 	
 	/**
+	 * 学生ID
+	 */
+	private Long studentId;
+	
+	/**
 	 * 学号
 	 */
 	private String studentNo;
@@ -32,6 +37,7 @@ public class StudentCourseCondition implements Serializable {
 	 */
 	private String grade;
 
+	
 	public Long getEcId() {
 		return ecId;
 	}
@@ -70,6 +76,14 @@ public class StudentCourseCondition implements Serializable {
 
 	public void setGrade(String grade) {
 		this.grade = grade;
+	}
+
+	public Long getStudentId() {
+		return studentId;
+	}
+
+	public void setStudentId(Long studentId) {
+		this.studentId = studentId;
 	}
 	
 }

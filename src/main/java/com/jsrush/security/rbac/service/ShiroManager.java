@@ -6,7 +6,10 @@ import com.jsrush.security.rbac.entity.User;
 import com.jsrush.security.rbac.listener.OnlineUserListener;
 import com.jsrush.security.rbac.realm.ShiroDbRealm.ShiroUser;
 import com.jsrush.security.rbac.repository.UserDao;
+import com.jsrush.sims.dao.StudentRepository;
+import com.jsrush.sims.entity.Student;
 import com.jsrush.util.StringHelper;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -30,7 +34,24 @@ public class ShiroManager {
 
     @Autowired
     private UserDao userDao;
+    
+    @Autowired
+    private StudentRepository studentRepository;
 
+    /**
+     * 获取当前登录者的学生ID
+     * 
+     * @return
+     */
+    public Long getCurrentStudentId() {
+    	return getCurrentUser().getStudentId();
+    }
+    
+    public Long findStudentIdByUserId(Long userId) {
+    	Student student = studentRepository.findByUserId(userId);
+    	return null == student ? null : student.getId();
+    }
+    
     public Integer getOnlineUser(HttpServletRequest request) {
         return (Integer) request.getSession().getServletContext().getAttribute(OnlineUserListener.SESSION_USERCOUNT_KEY);
     }
