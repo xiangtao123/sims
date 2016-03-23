@@ -52,6 +52,25 @@ public class StudentController {
 		return "sims/student_index";
 	}
 	
+	@RequestMapping("/view_info")
+	public String viewInfo(Model model) {
+		Long userId=shiroManager.getCurrentUserId();
+		Long currentUserEcId = shiroManager.getCurrentUserEcId();
+		List<Map<Long, String>> deptList = specialityService.findListByEcId(currentUserEcId);
+		Student vo = studentService.findByUserId(userId);
+		
+		model.addAttribute("specialityList", deptList);
+		if (vo != null) {
+			model.addAttribute("student", JSONObject.toJSONString(vo));
+		} else {
+			model.addAttribute("student", "");
+		}
+		
+		return "sims/view_info";
+	}
+	
+	
+	
 	@RequestMapping(value="/list")
 	@ResponseBody
 	public Map<String,Object> list(Student condtion,
@@ -80,6 +99,25 @@ public class StudentController {
 			return 1;
 		} catch (Exception e) {
 			logger.error("学生-新增编辑失败", e);
+			return -2;
+		}
+	}
+	
+	@RequestMapping(value="/registerAndBind")
+	@ResponseBody
+	public int registerAndBind(Student dto) {
+		try {
+			Long currentUserEcId = shiroManager.getCurrentUserEcId();
+			if (currentUserEcId == null || 1 > currentUserEcId) {
+				return -1;
+			}
+			Long currentUserId = shiroManager.getCurrentUserId();
+			dto.setUserId(currentUserId);
+			dto.setEcId(currentUserEcId);
+			studentService.saveOrUpdate(dto);
+			return 1;
+		} catch (Exception e) {
+			logger.error("学生-注册失败", e);
 			return -2;
 		}
 	}

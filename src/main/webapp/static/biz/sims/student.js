@@ -145,8 +145,8 @@ App.bindEvent = function() {
 			return;
 		}
 		var formData = eui.findFormDataJsonObject('#saveOrUpdateForm :input');
-		App.auditAjaxOptions.postData = formData;
-		eui.commAjax(App.auditAjaxOptions);
+		App.saveOrUpdateAjaxOptions.postData = formData;
+		eui.commAjax(App.saveOrUpdateAjaxOptions);
 	});
 	
 	$('#cancelBtn').click(function(){
