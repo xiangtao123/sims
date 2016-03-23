@@ -10,7 +10,6 @@ import javax.persistence.Query;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.jsrush.sims.entity.Dept;
 import com.jsrush.sims.entity.Speciality;
 import com.jsrush.util.SystemUtil;
 
@@ -33,7 +32,7 @@ public class SpecialityRepositoryImpl implements SpecialityRepositoryCustom {
 		Query countQuery = em.createQuery(countHql.toString());
 		setQueryParameter(countQuery, condition);
 		Long totalCount = (Long) countQuery.getSingleResult();
-		List<Dept> resultList = new ArrayList<Dept>();
+		List<Object> resultList = new ArrayList<Object>();
 		if (totalCount != null && totalCount.intValue() > 0) {
 			StringBuilder listHql = new StringBuilder(COMMON_SQL);
 			listHql.append(whereSql);

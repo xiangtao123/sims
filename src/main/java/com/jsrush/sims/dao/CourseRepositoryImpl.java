@@ -11,7 +11,6 @@ import javax.persistence.Query;
 import org.apache.commons.lang3.StringUtils;
 
 import com.jsrush.sims.entity.Course;
-import com.jsrush.sims.entity.Dept;
 import com.jsrush.util.SystemUtil;
 
 
@@ -34,7 +33,7 @@ private static final String COMMON_SQL = " select t from Course t ";
 		Query countQuery = em.createQuery(countHql.toString());
 		setQueryParameter(countQuery, condition);
 		Long totalCount = (Long) countQuery.getSingleResult();
-		List<Dept> resultList = new ArrayList<Dept>();
+		List<Object> resultList = new ArrayList<Object>();
 		if (totalCount != null && totalCount.intValue() > 0) {
 			StringBuilder listHql = new StringBuilder(COMMON_SQL);
 			listHql.append(whereSql);
