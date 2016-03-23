@@ -17,7 +17,7 @@ import com.jsrush.common.entity.IdEntity;
  * 
  */
 @Entity
-@Table(name="t_student _course")
+@Table(name="t_student_course")
 public class StudentCourse extends IdEntity {
 
 	private static final long serialVersionUID = -5633441084408306990L;
@@ -83,7 +83,9 @@ public class StudentCourse extends IdEntity {
 	public void setUpdateTime(Timestamp updateTime) {
 		this.updateTime = updateTime;
 	}
-
+	
+	
+	@Column(name="ec_id")
 	public Long getEcId() {
 		return ecId;
 	}

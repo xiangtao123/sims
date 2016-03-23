@@ -1,5 +1,6 @@
 package com.jsrush.sims.service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -52,6 +53,13 @@ public interface StudentService {
 	 * @return
 	 */
 	Student findByUserId(Long userId);
-	
+
+	/**
+	 * 查询学生列表
+	 * 
+	 * @param ecId
+	 * @return
+	 */
+	List<Map<String, Object>> findListByEcId(Long ecId);
 	
 }

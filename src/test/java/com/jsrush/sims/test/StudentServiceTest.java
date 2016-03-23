@@ -3,6 +3,7 @@ package com.jsrush.sims.test;
 import java.sql.Date;
 import java.text.ParseException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -27,6 +28,14 @@ public class StudentServiceTest extends BaseTest {
 
 	@Autowired
 	private StudentService studentService;
+	
+	@Test
+	public void testFindListByEcId() {
+		Long ecId = 1L;
+		List<Map<String, Object>> list = studentService.findListByEcId(ecId);
+		Assert.assertNotNull(list);
+		logger.info(JSONObject.toJSONString(list));
+	}
 	
 	@Test
 	public void testFindPageList() {

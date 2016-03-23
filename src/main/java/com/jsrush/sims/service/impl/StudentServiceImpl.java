@@ -2,6 +2,7 @@ package com.jsrush.sims.service.impl;
 
 import java.sql.Timestamp;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -95,6 +96,11 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public Student findByUserId(Long userId) {
 		return studentRepository.findByUserId(userId);
+	}
+
+	@Override
+	public List<Map<String, Object>> findListByEcId(Long ecId) {
+		return studentRepository.findListByEcId(ecId);
 	}
 	
 	

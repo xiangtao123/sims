@@ -1,6 +1,7 @@
 
 package com.jsrush.sims.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import com.jsrush.sims.entity.Student;
@@ -24,5 +25,13 @@ public interface StudentRepositoryCustom {
 	 * @return
 	 */
 	Student findByUserId(Long userId);
+	
+	/**
+	 * 查询学生列表
+	 * 
+	 * @param ecId
+	 * @return
+	 */
+	List<Map<String, Object>> findListByEcId(Long ecId);
 	
 }

@@ -16,8 +16,8 @@ import com.jsrush.util.SystemUtil;
 
 public class StudentCourseRepositoryImpl implements StudentCourseRepositoryCustom {
 
-	private static final String COMMON_LIST_SQL = " select t.id, student.studentNo studentNo, student.name studentName, t.grade, course.name courseName from StudentCourse t inner join t.student as student inner join t.course course ";
-	private static final String COMMON_COUNT_SQL = "select count(t.id) from StudentCourse t ";
+	private static final String COMMON_LIST_SQL = " select t from StudentCourse t  join t.student student  join t.course course ";
+	private static final String COMMON_COUNT_SQL = " select count(t.id) from StudentCourse t  join t.student student  join t.course course ";
 	
 	@PersistenceContext
 	private EntityManager em;
@@ -48,6 +48,9 @@ public class StudentCourseRepositoryImpl implements StudentCourseRepositoryCusto
 	private String makeWhere(StudentCourseCondition condition) {
 		StringBuilder hql = new StringBuilder();
 		hql.append(" where t.ecId = :ecId ");
+		if (null != condition.getStudentId()) {
+			hql.append(" and student.id = :studentId ");
+		}
 		if (StringUtils.isNotBlank(condition.getStudentName())) {
 			hql.append(" and student.name like :studentName ");
 		}
@@ -66,6 +69,9 @@ public class StudentCourseRepositoryImpl implements StudentCourseRepositoryCusto
 	
 	private void setQueryParameter(Query query, StudentCourseCondition condition) {
 		query.setParameter("ecId", condition.getEcId());
+		if (null != condition.getStudentId()) {
+			query.setParameter("studentId", condition.getStudentId());
+		}
 		if (StringUtils.isNotBlank(condition.getStudentName())) {
 			query.setParameter("studentName", condition.getStudentName());
 		}
@@ -82,8 +88,8 @@ public class StudentCourseRepositoryImpl implements StudentCourseRepositoryCusto
 
 	@Override
 	public List<StudentCourse> findListByStudentIdAndCourseId(Long studentId, Long courseId) {
-		StringBuilder hql = new StringBuilder("select  t from StudentCourse t inner join t.student as student inner join t.course course ");
-		hql.append(" and course.id = :courseId ");
+		StringBuilder hql = new StringBuilder("select  t from StudentCourse t  left join t.student student  left join t.course course ");
+		hql.append(" where course.id = :courseId ");
 		hql.append(" and student.id = :studentId ");
 		
 		Query query = em.createQuery(hql.toString());
