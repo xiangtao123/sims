@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>选课成绩管理 -  <spring:message code="app.title"></spring:message> </title>
+	<title>在线选课 -  <spring:message code="app.title"></spring:message> </title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
@@ -14,14 +14,6 @@
 		<form class="easyui-condition-form" id="listForm" >
 			<table>
 				<tr>
-					<td>姓名</td>
-					<td>
-						<input name="studentName" class="easyui-textbox" type="text" />
-					</td>
-					<td>学号</td>
-					<td>
-						<input name="studentNo" class="easyui-textbox" type="text" />
-					</td>
 					<td>课程</td>
 					<td>
 						<select class="easyui-combobox" name="courseId" style="width: 220px;">
@@ -51,17 +43,6 @@
 			<input name="id" type="hidden" />
 			<table border="0" cellpadding="4" style="width: 100%;">
 				<tr>
-					<td>学生</td>
-					<td>
-						<select class="easyui-combobox" name="studentId" style="width: 220px;" data-options="required:true, missingMessage:'请输入必填项'"  >
-							<c:if test="${studentList != null }">
-								<c:forEach items="${studentList }" var="item">
-								<option value="${item[0] }">${item[1] } - ${item[2] }</option>
-								</c:forEach>
-							</c:if>
-						</select>
-					</td>
-					
 					<td>课程</td>
 					<td>
 						<select class="easyui-combobox" name="courseId" style="width: 220px;" data-options="required:true, missingMessage:'请输入必填项'"  >
@@ -72,9 +53,7 @@
 							</c:if>
 						</select>
 					</td>
-										
 				</tr>
-				 
 			</table>
 		</form>
 	</div>
@@ -82,27 +61,8 @@
 		<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-save'" id="takeCourseBtn">保存</a>
 		<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" id="cancelBtn">取消</a>
 	</div>
-	
-	
-	<div id="saveGradeDlg" class="easyui-dialog" style="width:420px;"
-		data-options="iconCls:'icon-save', title:'成绩录入',buttons:'#saveGradeDlg-buttons',modal:true,closed:true">
-		<form class="easyui-condition-form" id="saveGradeForm" >
-			<table border="0" cellpadding="4" style="width: 100%;">
-				<tr>
-					<td>考试成绩</td>
-					<td>
-						<input name="grade" class="easyui-textbox" type="text" data-options="required:true, missingMessage:'请输入必填项'"  />
-					</td>
-				</tr>
-			</table>
-		</form>
-	</div>
-	<div id="saveGradeDlg-buttons">
-		<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-save'" id="saveGradeBtn">保存</a>
-		<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" id="saveGradeCancelBtn">取消</a>
-	</div>
-	
+		
 	<jsp:include page="/include_biz.jsp"></jsp:include>
-	<script type="text/javascript" src="${ctx }/static/biz/sims/takecourse.js"></script>
+	<script type="text/javascript" src="${ctx }/static/biz/sims/student_takecourse.js"></script>
 </body>
 </html>
