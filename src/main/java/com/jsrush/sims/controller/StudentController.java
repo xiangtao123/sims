@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
 import com.jsrush.security.rbac.service.ShiroManager;
+import com.jsrush.sims.dto.StudentDTO;
 import com.jsrush.sims.entity.Student;
 import com.jsrush.sims.service.SpecialityService;
 import com.jsrush.sims.service.StudentService;
+import com.jsrush.util.DateUtil;
 import com.jsrush.util.SystemUtil;
 
 /**
@@ -105,7 +107,7 @@ public class StudentController {
 	
 	@RequestMapping(value="/registerAndBind")
 	@ResponseBody
-	public int registerAndBind(Student dto) {
+	public int registerAndBind(StudentDTO dto) {
 		try {
 			Long currentUserEcId = shiroManager.getCurrentUserEcId();
 			if (currentUserEcId == null || 1 > currentUserEcId) {
@@ -114,6 +116,14 @@ public class StudentController {
 			Long currentUserId = shiroManager.getCurrentUserId();
 			dto.setUserId(currentUserId);
 			dto.setEcId(currentUserEcId);
+			
+			if (StringUtils.isNotBlank(dto.getGraduationDateStr())) {
+				dto.setGraduationDate(DateUtil.parseSQLDate(dto.getGraduationDateStr()));
+			}
+			if (StringUtils.isNotBlank(dto.getDegreeDateStr())) {
+				dto.setDegreeDate(DateUtil.parseSQLDate(dto.getDegreeDateStr()));
+			}
+			
 			studentService.saveOrUpdate(dto);
 			return 1;
 		} catch (Exception e) {

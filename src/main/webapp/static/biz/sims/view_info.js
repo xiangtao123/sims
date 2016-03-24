@@ -24,14 +24,14 @@ App.init = function() {
 		if (record.auditTime) {
 			record.auditTime = new Date(record.auditTime).format('yyyy-MM-dd hh:mm:ss');
 		}
-		if (record.degreeDate) {
-			record.degreeDate = new Date(record.degreeDate).format('yyyy-MM-dd');
-		}
 		if (record.enrollDate) {
 			record.enrollDate = new Date(record.enrollDate).format('yyyy-MM-dd');
 		}
 		if (record.graduationDate) {
-			record.graduationDate = new Date(record.graduationDate).format('yyyy-MM-dd');
+			record.graduationDateStr = new Date(record.graduationDate).format('yyyy-MM-dd');
+		}
+		if (record.degreeDate) {
+			record.degreeDateStr = new Date(record.degreeDate).format('yyyy-MM-dd');
 		}
 		if (record.registerTime) {
 			record.registerTime = new Date(record.registerTime).format('yyyy-MM-dd hh:mm:ss');

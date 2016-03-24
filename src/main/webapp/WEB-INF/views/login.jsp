@@ -27,10 +27,8 @@
 		
 		.help{ font-size:14px; font-weight:100; color:#787878; text-decoration:none;}
 		.t { height:76px; line-height:90px; background:#f5f5f5; border-bottom:1px solid #e5ecf0; overflow:hidden;}
-		.c{ width:964px; height:460px; margin:20px auto 0 auto; background:url(static/images/login_bg_0.jpg) no-repeat; }
-	    .boxc{ background:#fff; margin:100px 50px 20px 0px; padding: 40px 0px 30px 50px; float:right; width: 40%;}
-	    
-	    .c{ width:964px; height:460px; margin:4px auto 0 auto; background:url(static/images/login_bg_0.jpg) no-repeat; }
+	    .boxc{ box-shadow: 10px 10px 5px #e5ecf0; background:#f5f5f5; margin:100px 50px 20px 0px; padding: 40px 0px 30px 50px; float:right; width: 40%;}
+	    .c{  height:460px; margin:4px auto 0 auto; background:url(static/images/login_bg_0.jpg) no-repeat; }
 	</style>
  
  </head>
@@ -109,10 +107,13 @@
 				 
 		    </form>
 
-	    	<a  tabindex="5" id="submitLinkBtn" class="easyui-linkbutton" style="width:48%;background-color: #7cbe56; font-weight: bold;" onclick="submitForm()">
+	    	<a  tabindex="5" id="submitLinkBtn" class="easyui-linkbutton" style="width:38%;background-color: #7cbe56; font-weight: bold;" onclick="submitForm()">
 	    		<span style="font-size:16px; font-weight: bold;">登 &nbsp;  录</span>
 	    	</a>
 	    	
+	    	<a tabindex="6" href="${ctx }/register/index" style="margin-left: 40px;color: blue;" title="进入用户注册界面">
+	    		用户注册
+	    	</a>
 		</div>
 	
 	</div>

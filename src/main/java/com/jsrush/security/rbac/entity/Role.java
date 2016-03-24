@@ -28,6 +28,8 @@ public class Role extends IdEntity {
 	private Set<Action> action = new HashSet<Action>();
 	
 	private Ec ec;
+	
+	private int openRegister = 0;
 
 	private Role parentRole;
 	
@@ -110,7 +112,6 @@ public class Role extends IdEntity {
 		this.roles = roles;
 	}
 	
-	
 	@Override
 	public boolean equals(Object another) {
 		if (another instanceof Role) {
@@ -132,6 +133,15 @@ public class Role extends IdEntity {
 		StringBuilder str = new StringBuilder();
 		str.append(getRoleName()).append("@").append(id);
 		return str.toString();
+	}
+
+	@Column(name="open_register")
+	public int getOpenRegister() {
+		return openRegister;
+	}
+
+	public void setOpenRegister(int openRegister) {
+		this.openRegister = openRegister;
 	}
 
 }

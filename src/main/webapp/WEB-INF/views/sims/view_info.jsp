@@ -107,14 +107,14 @@
 					
 					<td>毕业日期</td>
 					<td>
-						<input name="graduationDate" class="easyui-datebox" type="text" data-options="disabled:true" />
+						<input name="graduationDateStr" class="easyui-datebox" type="text" data-options="disabled:true" />
 					</td>
 										
 				</tr>
 				<tr>
 					<td>授予学位日期</td>
 					<td>
-						<input required="required" name="degreeDate" class="easyui-datebox" type="text" data-options="disabled:true" />
+						<input required="required" name="degreeDateStr" class="easyui-datebox" type="text" data-options="disabled:true" />
 					</td>
 					
 					<td>审核状态</td>
