@@ -1,5 +1,5 @@
 /**
- * 选课成绩
+ * 在线选课
  */
 var App = function(){};
 App.searchFormId = '#listForm';
@@ -8,7 +8,7 @@ App.searchParamKey  = null;
 App.dataGridId = "#dataGrid";
 App.init = function() {
 	var gridOptions = {
-		url: eui.basePath + '/take_course/list',
+		url: eui.basePath + '/student_take_course/list',
 		method:'post',
 		fitColumns:false,
 		toolbar: [
@@ -51,7 +51,7 @@ App.init = function() {
 };
 
 App.takeCourseAjaxOptions = {
-	url 	: 	'/take_course/takeCourse',
+	url 	: 	'/student_take_course/takeCourse',
 	success	:	function(data, st, xhr) {
 		if (data == 1) {
 			eui.alert('操作成功：信息成功保存');
@@ -59,21 +59,8 @@ App.takeCourseAjaxOptions = {
 			$('#takeCourseDlg').dialog('close');
 		} else if (data == -1) {
 			eui.alert('操作失败：平台管理员不允许进行此操作','warning');
-		} else {
-			eui.alert('操作失败，程序运行异常','error');
-		}
-	}
-};
-
-App.saveGradeAjaxOptions = {
-	url 	: 	'/take_course/saveGrade',
-	success	:	function(data, st, xhr) {
-		if (data == 1) {
-			eui.alert('操作成功：信息成功保存');
-			eui.loadDataGridWithFormDataSelector(App.dataGridId, App.searchFormInputSelector, App.searchParamKey);
-			$('#saveGradeDlg').dialog('close');
-		} else if (data == -1) {
-			eui.alert('操作失败：参数无效','warning');
+		}  else if (data == -3) {
+			eui.alert('操作失败：非学生角色不允许进行此操作','warning');
 		} else {
 			eui.alert('操作失败，程序运行异常','error');
 		}
@@ -103,25 +90,8 @@ App.bindEvent = function() {
 		$('#takeCourseDlg').dialog('close');
 	});
 	
-	$('#saveGradeBtn').click(function() {
-		var isValid = $('#saveGradeForm').form('validate');
-		if (!isValid) {
-			return;
-		}
-		
-		var rows = $(App.dataGridId).datagrid('getChecked');
-		var formData = eui.findFormDataJsonObject('#saveGradeForm :input');
-		formData['studentCourseId'] = rows[0].id;
-		App.saveGradeAjaxOptions.postData = formData;
-		eui.commAjax(App.saveGradeAjaxOptions);
-	});
-	
-	$('#saveGradeCancelBtn').click(function(){
-		$('#saveGradeDlg').dialog('close');
-	});
-	
-	
 };
+
 
 $(function() {
 	App.init();
@@ -133,16 +103,4 @@ App.takeCourseDlg = function() {
 	$('#takeCourseForm').form('clear');
 	$('#takeCourseDlg').dialog('open');
 };
-
-App.saveGradeDlg = function () {
-	var rows = $(App.dataGridId).datagrid('getChecked');
-	if (rows.length != 1) {
-		eui.alert('操作提示：请选择一条记录','warning');
-		return;
-	}
-	$('#saveGradeForm').form('clear');
-	$('#saveGradeDlg').dialog('open');
-};
-
-
 
