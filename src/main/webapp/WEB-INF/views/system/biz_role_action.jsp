@@ -161,13 +161,22 @@
 
                 <div class="field">
                     <label for="role_name">角色名称:</label>
-                    <input id="role_name" name="name" class="easyui-textbox" style="width: 100%"
+                    <input id="role_name" name="name" class="easyui-textbox" style="width: 90%"
                            data-options="required:true">
                 </div>
+                
+                <div class="field">
+                    <label for="role_name">开放注册:</label>
+                    <select id="role_openRegister" name="openRegister" class="easyui-combobox" style="width: 90%" >
+                    	<option value="0">否</option>
+                    	<option value="1">是</option>
+                    </select>
+                </div>
+                
                 <c:if test="${roleLevel == 1}">
                     <div class="field">
                         <label for="role_ec">企业:</label>
-                        <input name="ec" id="role_ec" class="easyui-combobox" style="width: 100%"
+                        <input name="ec" id="role_ec" class="easyui-combobox" style="width: 90%"
                                data-options="
                     url:'${ctx}/ecinfor/list',
                     required:true,
@@ -217,6 +226,7 @@
                 id: $("#role_id").val(),
                 pId: $("#role_pid").val(),
                 name: $("#role_name").val(),
+                openRegister:$('#role_openRegister').combobox('getValue'),
                 ec: function () {
                     if ($("#role_ec").length) {
                         return $("#role_ec").combobox('getValue');
@@ -550,7 +560,7 @@
         var zTree = $.fn.zTree.getZTreeObj('role_tree');
         if (r && r > 0) {
             var data = getRoleFormData();
-            zTree.addNodes(getCurrentRole(), {id: data.id, pId: data.pId, name: data.name});
+            zTree.addNodes(getCurrentRole(), {id: data.id, pId: data.pId, name: data.name, openRegister: data.openRegister});
             resize();
         }
         else {

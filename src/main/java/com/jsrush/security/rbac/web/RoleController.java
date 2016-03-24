@@ -8,8 +8,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,9 +32,7 @@ import com.jsrush.util.StringHelper;
 @Controller
 @RequestMapping(value = "/role")
 public class RoleController {
-
-    private Logger log = LoggerFactory.getLogger(RoleController.class);
-
+	
     @Autowired
     private RoleService roleService;
     
@@ -70,6 +66,7 @@ public class RoleController {
             HashMap<String, Object> map = new HashMap<String, Object>();
             map.put("id", role.getId());
             map.put("name", role.getRoleName());
+            map.put("openRegister", role.getOpenRegister());
             if (role.getEc() != null)
                 map.put("ec", role.getEc().getId());
             if (role.getParentRole() != null)
@@ -91,12 +88,18 @@ public class RoleController {
                      @RequestParam(value = "pId", required = false, defaultValue = "-1") Long pId,
                      @RequestParam(value = "ec", required = false, defaultValue = "-1") Long ecId,
                      @RequestParam(value = "name", required = false, defaultValue = "") String name,
+                     @RequestParam(value = "openRegister", required = false, defaultValue = "0") int openRegister,
                      @RequestParam(value = "actions", required = false, defaultValue = "") List<Long> aIds) {
         if (shiroManager.getCurrentRoleLevel() != 1)
             ecId = shiroManager.getCurrentUser().getEcId();
         if (Objects.equals(shiroManager.getCurrentRoleId(), id))
             aIds.clear();
-        return roleService.save(id, pId, name, aIds, ecId);
+        Role dto = new Role();
+        dto.setId(id);
+        dto.setRoleName(name);
+        dto.setOpenRegister(openRegister);
+        
+		return roleService.save(dto, pId, aIds, ecId);
     }
 
     @RequestMapping(value = "del", method = RequestMethod.POST)
@@ -129,6 +132,7 @@ public class RoleController {
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("name", role.getRoleName());
             map.put("id", role.getId());
+            map.put("openRegister", role.getOpenRegister());
             if (role.getParentRole() != null)
                 map.put("pId", role.getParentRole().getId());
             else
@@ -163,6 +167,7 @@ public class RoleController {
             map.put("name", role.getRoleName());
             map.put("id", role.getId());
             map.put("pId", role.getId());
+            map.put("openRegister", role.getOpenRegister());
             List<Long> actions = new ArrayList<>();
             for (Action action : role.getAction()) {
                 actions.add(action.getId());

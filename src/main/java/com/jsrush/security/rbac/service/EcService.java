@@ -1,6 +1,7 @@
 package com.jsrush.security.rbac.service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import com.jsrush.security.rbac.entity.Ec;
 import com.jsrush.security.rbac.entity.Role;
 import com.jsrush.security.rbac.repository.EcDao;
 import com.jsrush.security.rbac.repository.RoleDao;
+import com.jsrush.security.rbac.repository.mapper.EcMapper;
 import com.jsrush.security.rbac.vo.EcDTO;
 import com.jsrush.util.DateUtil;
 
@@ -22,6 +24,9 @@ public class EcService {
 
     @Autowired
     private EcDao ecDao;
+    
+    @Autowired
+    private EcMapper ecMapper;
 
     @Autowired
     private RoleDao roleDao;
@@ -108,4 +113,9 @@ public class EcService {
         ecDao.delete(list);
         return true;
     }
+
+    public List<Map<String, Object>> findList() {
+		return ecMapper.findList();
+	}
+	
 }

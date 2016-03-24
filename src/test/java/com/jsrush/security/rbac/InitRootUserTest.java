@@ -57,7 +57,7 @@ public class InitRootUserTest extends BaseTest {
 	public void testAddRootRole() {
 		Role role = new Role();
 		role.setRoleName("超级系统管理员");
-		roleService.save(role);
+		roleDao.save(role);
 		
 		Assert.assertNotNull(role.getId());
 		

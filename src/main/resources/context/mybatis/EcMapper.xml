@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jsrush.security.rbac.repository.mapper.EcMapper">
+	
+	<!-- 查询企业列表 -->
+	<select id="findList" parameterType="Long"  resultType="hashmap" >
+		<![CDATA[
+			select t.id VALUE_FIELD, t.corp_name TEXT_FIELD from t_jsrush_ec t
+		]]> 
+	</select>
+	
+</mapper>

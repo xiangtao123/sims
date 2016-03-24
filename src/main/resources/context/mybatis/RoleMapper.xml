@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jsrush.security.rbac.repository.mapper.RoleMapper">
+	
+	<!-- 查询开放注册的角色列表 -->
+	<select id="findListByOpenRegister" parameterType="Long"  resultType="hashmap" >
+		<![CDATA[
+			select t.id VALUE_FIELD, t.role_name TEXT_FIELD from t_jsrush_role t
+		    where t.open_register = 1 and t.ec_id = #{ecId}
+		]]> 
+	</select>
+	
+</mapper>

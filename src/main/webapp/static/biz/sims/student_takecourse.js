@@ -13,7 +13,6 @@ App.init = function() {
 		fitColumns:false,
 		toolbar: [
 		     { text:'选课', iconCls: 'icon-add', handler: function(){ App.takeCourseDlg(false) }}
-		   , { text:'成绩录入', iconCls: 'icon-edit', handler: function(){ App.saveGradeDlg(true) }}
 		],
 		columns:[[
 			{field:'id', title:'编号', width:80, checkbox:true },

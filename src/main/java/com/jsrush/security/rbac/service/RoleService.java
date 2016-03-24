@@ -20,6 +20,7 @@ import com.jsrush.security.rbac.entity.User;
 import com.jsrush.security.rbac.repository.ActionDao;
 import com.jsrush.security.rbac.repository.EcDao;
 import com.jsrush.security.rbac.repository.RoleDao;
+import com.jsrush.security.rbac.repository.mapper.RoleMapper;
 import com.jsrush.util.StringHelper;
 import com.jsrush.util.SystemUtil;
 
@@ -33,11 +34,14 @@ public class RoleService {
 	private RoleDao roleDao;
 
 	@Autowired
+	private RoleMapper roleMapper;
+	
+	@Autowired
 	private ActionDao actionDao;
 
 	@Autowired
 	private EcDao ecDao;
-
+	
 	@Transactional(readOnly = false)
 	public void del(Long id) {
 		Role role = roleDao.findOne(id);
@@ -79,10 +83,11 @@ public class RoleService {
 	}
 
 	@Transactional(readOnly = false)
-	public Role saveByRoleName(String roleName, Long ecId, Long[] permissions) {
+	public Role saveByRoleName(Role dto, Long ecId, Long[] permissions) {
 		Role parentRole = roleDao.getNullpId();
 		Role role = new Role();
-		role.setRoleName(roleName);
+		role.setRoleName(dto.getRoleName());
+		role.setOpenRegister(dto.getOpenRegister());
 		role.setParentRole(parentRole);
 		for (Long rId : permissions) {
 			Role rl = roleDao.findOne(rId);
@@ -97,15 +102,20 @@ public class RoleService {
 	}
 
 	@Transactional(readOnly = false)
-	public Long save(Long id, Long pId, String name, List<Long> aIds, Long ecId) {
-
+	public Long save(Role dto, Long pId, List<Long> aIds, Long ecId) {
+		Long id = dto.getId();
+		String name = dto.getRoleName();
+		int openRegister = dto.getOpenRegister();
 		Role role = null;
-		if (id < 1L) {
+		if (null == id || id < 1L) {
 			role = new Role();
 			Role parentRole = getRole(pId);
 			role.setParentRole(parentRole);
 			Set<Role> permRoles = role.getRoles();
-			permRoles.addAll(parentRole.getRoles());
+			Set<Role> parentRoles = parentRole.getRoles();
+			if (null != parentRoles && 1 > parentRoles.size()) {
+				permRoles.addAll(parentRoles);
+			}
 			permRoles.add(role);
 			permRoles.add(parentRole);
 		} else {
@@ -123,15 +133,10 @@ public class RoleService {
 			role.setRoleName(name);
 		if (ecId > 0)
 			role.setEc(ecDao.findOne(ecId));
-
+		role.setOpenRegister(openRegister);
 		roleDao.save(role);
 
 		return role.getId();
-	}
-
-	@Transactional(readOnly = false)
-	public void save(Role role) {
-		roleDao.save(role);
 	}
 
 	public Role findOne(Long id) {
@@ -164,7 +169,7 @@ public class RoleService {
 		JSONObject roleDTO = SystemUtil.fromObject(params);
 		Long id = roleDTO.getLong("id");
 		String roleName = roleDTO.getString("name");
-
+		int openRegister = roleDTO.getInt("openRegister");
 		Role role = null;
 		if (id.equals(Long.valueOf(-1))) {
 			role = new Role();
@@ -188,6 +193,7 @@ public class RoleService {
 		}
 
 		role.setRoleName(roleName);
+		role.setOpenRegister(openRegister);
 		roleDao.save(role);
 		role.getRoles().add(role);
 		return role.getId();
@@ -269,4 +275,9 @@ public class RoleService {
 	public List<Role> getAll() {
 		return roleDao.findAll();
 	}
+
+	public List<Map<String, Object>> findListByOpenRegister(Long ecId) {
+		return roleMapper.findListByOpenRegister(ecId);
+	}
+	
 }
