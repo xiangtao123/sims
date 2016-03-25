@@ -54,7 +54,7 @@
 		.help{ font-size:14px; font-weight:100; color:#787878; text-decoration:none;}
 		.t { height:76px; line-height:90px; background:#f5f5f5; border-bottom:1px solid #e5ecf0; overflow:hidden;}
 		
-		.boxc{ box-shadow: 10px 10px 5px #e5ecf0; background:#f5f5f5; width: 40%; margin-left: 30%; margin-top: 2%;}
+		.boxc{ box-shadow: 10px 10px 5px #e5ecf0; background:#f5f5f5; width: 80%; margin: 2% auto 0px auto;}
 		
 	</style>
 	
@@ -72,7 +72,7 @@
 	
     <form id="addUserForm">
     	<table border="0" cellpadding="10" class="boxc">
-    		<col width="50%">
+    		<col width="20%">
     		<col width="60%">
 
     		<tr>
