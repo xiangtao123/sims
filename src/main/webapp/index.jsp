@@ -5,7 +5,7 @@
 		<title>权限管理系统</title>
 		<meta http-equiv="pragma" content="no-cache">
 		<script type="text/javascript">
-			location.href = "index.htm";
+			location.href = "welcome/index";
 		</script>
 	</head>
 	<body>
