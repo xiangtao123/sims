@@ -12,7 +12,7 @@
 
   <properties>
     <project.build.filename>sims</project.build.filename>
-	<version.project.compiler.jdk>1.7</version.project.compiler.jdk>
+	<version.project.compiler.jdk>1.8</version.project.compiler.jdk>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     
     <!-- jetty:config -->
