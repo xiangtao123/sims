@@ -30,7 +30,7 @@
     <version.project.spring.data.jpa>1.8.0.RELEASE</version.project.spring.data.jpa>
 	<version.project.junit>4.11</version.project.junit>
 	<version.project.dbcp>1.4</version.project.dbcp>
-	<version.project.hibernate>3.6.10.Final</version.project.hibernate>
+	<version.project.hibernate>5.4.24.Final</version.project.hibernate>
 	<version.project.hibernate.jpa>1.0.1.Final</version.project.hibernate.jpa> 	
     <version.project.hibernate.annotations>3.2.0.Final</version.project.hibernate.annotations>
   	<version.project.slf4j>1.6.6</version.project.slf4j>
